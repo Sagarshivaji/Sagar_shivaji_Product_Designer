@@ -9,7 +9,7 @@ const files = [
 ];
 
 const oldUrl = 'https://jobnotification-7l239ca15-sagar197.vercel.app';
-const newUrl = 'https://jobnotification-parzuu1ou-sagar197.vercel.app';
+const newUrl = 'https://job-pulse-toie.onrender.com/';
 
 files.forEach(f => {
   const filePath = path.join(baseDir, f);
