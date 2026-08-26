@@ -1,0 +1,708 @@
+<!--
+  ============================================================
+  Laundry Service · UX Case Study
+  Fits into existing portfolio CSS/JS structure
+  Place this file in your /work/ directory (e.g., work/laundry.html)
+  ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Laundry Service · UX Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../work.html">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus />
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="../index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="../work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="../about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="../research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="../work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="../work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="../work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="../work/laundry-app.html">
+          <span class="command-item-left">Laundry Service · UX</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DESKTOP NAVIGATION BAR
+       ============================================================ -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='../index.html'">
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../work.html" class="active">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       CASE STUDY: LAUNDRY SERVICE
+       ============================================================ -->
+  <div class="page" id="page-project-laundry">
+    <main class="project-container">
+      <section class="page-section">
+
+        <!-- Back link -->
+        <a href="../work.html" class="btn btn-ghost reveal" style="padding-left:0; margin-bottom:32px; font-weight: 500;">
+          <span style="margin-right:8px;">←</span> Back to work
+        </a>
+
+        <!-- Hero -->
+        <div class="reveal">
+          <span class="caption accent-text font-semibold">Concept · 2026</span>
+          <h1 class="heading-1 font-semibold" style="margin:16px 0; max-width:840px;">Laundry Service</h1>
+        </div>
+
+        <!-- Info Bar -->
+        <div class="project-info-bar reveal">
+          <div class="project-info-item">
+            <span class="small text-tertiary">Role</span>
+            <strong class="text-primary">UX Researcher &amp; Product Designer</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Industry</span>
+            <strong class="text-primary">Consumer Services</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Timeline</span>
+            <strong class="text-primary">4 weeks</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Reading time</span>
+            <strong class="text-primary">30 min</strong>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="project-hero-image-wrapper reveal">
+          <img src="../images/laundry app hero section.png" alt="Laundry service app concept" class="project-hero-img" loading="lazy" />
+        </div>
+
+        <!-- Project Layout: Sticky Nav + Content -->
+        <div class="project-layout">
+
+          <!-- Sticky Sidebar Navigation -->
+          <nav class="sticky-nav">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#problem">Problem</a>
+            <a href="#research">Research</a>
+            <a href="#survey">Survey</a>
+            <a href="#painpoints">Pain Points</a>
+            <a href="#insights">Insights</a>
+            <a href="#competitors">Competitors</a>
+            <a href="#personas">Personas</a>
+            <a href="#empathy">Empathy</a>
+            <a href="#journey">Journey</a>
+            <a href="#userflow">User Flow</a>
+            <a href="#ia">IA</a>
+            <a href="#sketches">Sketches</a>
+            <a href="#wireframes">Wireframes</a>
+            <a href="#designsystem">Design System</a>
+            <a href="#hifi">High‑Fidelity</a>
+            <a href="#reflection">Reflection</a>
+            <a href="#thankyou">Thank You</a>
+          </nav>
+
+          <!-- Content Block -->
+          <div class="project-content-block">
+
+            <!-- ===== OVERVIEW ===== -->
+            <div id="overview" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Overview</h2>
+              <div class="project-section-grid">
+                <div class="project-summary-text">
+                  <p class="body-large text-primary" style="margin-bottom:16px;">
+                    Provide a transparent and effortless on‑demand laundry experience with real‑time order updates.
+                  </p>
+                  <p class="body-base text-secondary">
+                    Users find traditional laundry services inconvenient because they cannot track order status,
+                    pricing isn't transparent, scheduling is confusing, and existing apps are either outdated or cluttered.
+                  </p>
+                </div>
+                <div class="project-sidebar-stat">
+                  <div class="insight-stat font-bold">5</div>
+                  <p class="small text-secondary font-semibold">User Surveys Conducted</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== PROBLEM ===== -->
+            <div id="problem" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The Core Challenge</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Traditional laundry services fail to meet modern expectations. Users are left in the dark,
+                confused by pricing, and frustrated with scheduling.
+              </p>
+              <ul class="project-list">
+                <li><strong>No visibility</strong> — Users have no way to track their order once it leaves their doorstep.</li>
+                <li><strong>Hidden costs</strong> — Pricing is often unclear, leading to surprise charges and distrust.</li>
+                <li><strong>Confusing scheduling</strong> — Pick‑up and delivery windows are vague, causing missed appointments.</li>
+                <li><strong>Cluttered apps</strong> — Existing apps are overloaded with features, making the core task hard to find.</li>
+              </ul>
+            </div>
+
+            <!-- ===== RESEARCH ===== -->
+            <div id="research" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Understanding the Landscape</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">
+                To understand the current laundry experience and identify UX gaps, I carried out user surveys
+                and competitor analysis.
+              </p>
+              <div class="project-section-grid">
+                <div>
+                  <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:12px;">
+                    <span style="background:var(--step-icon-bg); padding:4px 14px; border-radius:100px; border:1px solid var(--border); font-size:13px;"> User Survey</span>
+                    <span style="background:var(--step-icon-bg); padding:4px 14px; border-radius:100px; border:1px solid var(--border); font-size:13px;"> Competitor Analysis</span>
+                  </div>
+                  <p class="body-base text-secondary">
+                    5 participants were surveyed with 4 key questions to uncover pain points and needs.
+                    Competitor analysis evaluated 5 leading laundry apps to identify gaps and opportunities.
+                  </p>
+                </div>
+                <div class="project-sidebar-stat">
+                  <div class="insight-stat font-bold">5</div>
+                  <p class="small text-secondary font-semibold">Competitors Analyzed</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SURVEY ===== -->
+            <div id="survey" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">What I Asked</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">
+                To collect initial user insights, I conducted a short survey with 10 participants.
+              </p>
+
+              <div style="display:grid; gap:10px; margin-bottom:32px;">
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:1.1rem; min-width:26px;">1</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary);">How do you currently manage your laundry?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:1.1rem; min-width:26px;">2</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary);">What price range do you feel comfortable paying for laundry services?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 16px; background:var(--bg-surface); border-radius:8px; ">
+                  <span style="font-weight:700; color:var(--accent); font-size:1.1rem; min-width:26px;">3</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary);">What makes you trust a laundry service?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:1.1rem; min-width:26px;">4</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary);">What is the biggest challenge you face with your current laundry method?</p>
+                </div>
+              </div>
+               <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/laundry app survey.png" alt="Sketch 1" style="width:100%;  object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">User Survey</span>
+              </div>
+
+              <!-- Survey Results Chart -->
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px);">
+                <h4 style="font-weight:600; margin-bottom:20px; font-size:16px;">How do you currently manage your laundry?</h4>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="min-width:72px; font-size:0.85rem; font-weight:500; color:var(--text-secondary);">1 person</span>
+                    <div style="flex:1; height:10px; background:var(--border); border-radius:100px; overflow:hidden;">
+                      <div style="width:20%; height:100%; background:var(--accent); border-radius:100px; transition:width 0.8s ease;"></div>
+                    </div>
+                    <span style="font-size:0.85rem; font-weight:500; min-width:24px; color:var(--text-secondary);">1</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="min-width:72px; font-size:0.85rem; font-weight:500; color:var(--text-secondary);">2 people</span>
+                    <div style="flex:1; height:10px; background:var(--border); border-radius:100px; overflow:hidden;">
+                      <div style="width:40%; height:100%; background:var(--accent); border-radius:100px; transition:width 0.8s ease;"></div>
+                    </div>
+                    <span style="font-size:0.85rem; font-weight:500; min-width:24px; color:var(--text-secondary);">2</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="min-width:72px; font-size:0.85rem; font-weight:500; color:var(--text-secondary);">3–4 people</span>
+                    <div style="flex:1; height:10px; background:var(--border); border-radius:100px; overflow:hidden;">
+                      <div style="width:20%; height:100%; background:var(--accent); border-radius:100px; transition:width 0.8s ease;"></div>
+                    </div>
+                    <span style="font-size:0.85rem; font-weight:500; min-width:24px; color:var(--text-secondary);">1</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="min-width:72px; font-size:0.85rem; font-weight:500; color:var(--text-secondary);">5+ people</span>
+                    <div style="flex:1; height:10px; background:var(--border); border-radius:100px; overflow:hidden;">
+                      <div style="width:20%; height:100%; background:var(--accent); border-radius:100px; transition:width 0.8s ease;"></div>
+                    </div>
+                    <span style="font-size:0.85rem; font-weight:500; min-width:24px; color:var(--text-secondary);">1</span>
+                  </div>
+                </div>
+                <p class="small text-tertiary" style="margin-top:16px;">5 respondents · Household size distribution</p>
+              </div>
+            </div>
+
+            <!-- ===== PAIN POINTS ===== -->
+            <div id="painpoints" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Key Frustrations</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">Users consistently reported the same obstacles across the survey.</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:2rem; display:block; margin-bottom:6px;">📦</span>
+                  <h4 style="font-weight:600; font-size:1rem;">Lost in transit</h4>
+                  <p class="small text-secondary">No visibility after drop‑off.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:2rem; display:block; margin-bottom:6px;">💲</span>
+                  <h4 style="font-weight:600; font-size:1rem;">Surprise fees</h4>
+                  <p class="small text-secondary">Pricing feels like a guessing game.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:2rem; display:block; margin-bottom:6px;">📅</span>
+                  <h4 style="font-weight:600; font-size:1rem;">Missed windows</h4>
+                  <p class="small text-secondary">Vague scheduling leads to missed pick‑ups.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:2rem; display:block; margin-bottom:6px;">📱</span>
+                  <h4 style="font-weight:600; font-size:1rem;">Overwhelming apps</h4>
+                  <p class="small text-secondary">Too many features, core task gets buried.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== INSIGHTS ===== -->
+            <div id="insights" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">What I Learned</h2>
+              <div style="display:grid; gap:14px;">
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--bg-surface); border-radius:12px; ">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:34px;">01</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);">Users value <strong style="color:var(--text-primary);">visibility</strong> above all else — they want to know where their laundry is at every step.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--bg-surface); border-radius:12px; ">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:34px;">02</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Transparent pricing</strong> is the #1 trust signal. Hidden fees are the fastest way to lose a customer.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--bg-surface); border-radius:12px; ">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:34px;">03</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Scheduling flexibility</strong> matters more than speed. Users want to choose when pick‑up and delivery happen.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--bg-surface); border-radius:12px; ">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:34px;">04</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);">A <strong style="color:var(--text-primary);">clean, focused interface</strong> wins. Users don't want a Swiss Army knife — they want a simple tool that works.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== COMPETITORS ===== -->
+            <div id="competitors" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">How Others Stack Up</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">Evaluated 5 leading laundry apps across key UX dimensions.</p>
+
+              <div style="overflow-x:auto; border-radius:16px; border:1px solid var(--border); background:var(--card-bg);">
+                <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+                  <thead>
+                    <tr>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">Feature</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">LaundryApp</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">WashNow</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">Clean&Go</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">SpinCycle</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">FreshWash</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Order Tracking</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">✅</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Transparent Pricing</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">✅</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Guest Checkout</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">✅</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Clean UI</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">❌</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">✅</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">⚠️</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">✅</td></tr>
+                    <tr><td style="padding:10px 14px; font-weight:500;">Flexible Scheduling</td><td style="padding:10px 14px;">✅</td><td style="padding:10px 14px;">⚠️</td><td style="padding:10px 14px;">✅</td><td style="padding:10px 14px;">❌</td><td style="padding:10px 14px;">⚠️</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="small text-tertiary" style="margin-top:10px;">✅ Good &nbsp;·&nbsp; ⚠️ Average &nbsp;·&nbsp; ❌ Poor</p>
+            </div>
+
+            <!-- ===== PERSONAS ===== -->
+            <div id="personas" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Who am I Designing For</h2>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+                <div style="display:flex; gap:20px; background:var(--card-bg); border-radius:16px; padding:24px; border:1px solid var(--card-border); align-items:flex-start;">
+                  <div style="width:64px; height:64px; border-radius:50%; overflow:hidden; flex-shrink:0; background:var(--border);">
+                    <img src="../images/persona-2(female).png" alt="Sarah" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
+                  </div>
+                  <div>
+                    <span style="font-weight:700; font-size:1.15rem; display:block;">Sarah</span>
+                    <span style="font-size:0.8rem; color:var(--text-tertiary); display:block; margin-bottom:4px;">Busy Professional</span>
+                    <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:8px;">Sarah works 50+ hours a week and has no time for laundry. She needs a service that's reliable, fast, and transparent.</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                      <span style="font-size:0.7rem; background:var(--bg-surface); padding:2px 10px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Needs: Tracking, fixed pricing</span>
+                      <span style="font-size:0.7rem; background:var(--bg-surface); padding:2px 10px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Frustrations: Hidden fees</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; gap:20px; background:var(--card-bg); border-radius:16px; padding:24px; border:1px solid var(--card-border); align-items:flex-start;">
+                  <div style="width:64px; height:64px; border-radius:50%; overflow:hidden; flex-shrink:0; background:var(--border);">
+                    <img src="../images/persona -1(male).png" alt="Mike" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" />
+                  </div>
+                  <div>
+                    <span style="font-weight:700; font-size:1.15rem; display:block;">Mike</span>
+                    <span style="font-size:0.8rem; color:var(--text-tertiary); display:block; margin-bottom:4px;">Student</span>
+                    <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:8px;">Mike is a college student living in a dorm. He needs affordable, on-demand laundry that fits his irregular schedule.</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                      <span style="font-size:0.7rem; background:var(--bg-surface); padding:2px 10px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Needs: Low cost, guest checkout</span>
+                      <span style="font-size:0.7rem; background:var(--bg-surface); padding:2px 10px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Frustrations: Sign‑up walls</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== EMPATHY ===== -->
+            <div id="empathy" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Understanding the User</h2>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div style="padding:20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <h3 style="font-weight:600; margin-bottom:4px; font-size:1.05rem;">🧠 Think</h3>
+                  <p style="font-size:0.92rem; color:var(--text-secondary);">"I hope my clothes don't get lost."<br />"Is this going to cost more than quoted?"</p>
+                </div>
+                <div style="padding:20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <h3 style="font-weight:600; margin-bottom:4px; font-size:1.05rem;">❤️ Feel</h3>
+                  <p style="font-size:0.92rem; color:var(--text-secondary);">Anxious about reliability. Frustrated by opaque pricing. Relieved when things go smoothly.</p>
+                </div>
+                <div style="padding:20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <h3 style="font-weight:600; margin-bottom:4px; font-size:1.05rem;">👂 Hear</h3>
+                  <p style="font-size:0.92rem; color:var(--text-secondary);">Friends complaining about laundry apps. Ads promising "fast & easy" but delivering less.</p>
+                </div>
+                <div style="padding:20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <h3 style="font-weight:600; margin-bottom:4px; font-size:1.05rem;">👀 See</h3>
+                  <p style="font-size:0.92rem; color:var(--text-secondary);">Cluttered app interfaces. Hidden fees at checkout. Vague delivery windows.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== JOURNEY ===== -->
+            <div id="journey" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The User's Path</h2>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; gap:20px; align-items:flex-start; padding:16px 20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-size:1.4rem; font-weight:800; color:var(--accent); min-width:40px;">1</span>
+                  <div><h4 style="font-weight:600; margin-bottom:2px;">Discovery</h4><p style="font-size:0.9rem; color:var(--text-secondary);">User searches for laundry services, compares options, and reads reviews.</p><span style="display:inline-block; margin-top:4px; font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">😐 Neutral</span></div>
+                </div>
+                <div style="display:flex; gap:20px; align-items:flex-start; padding:16px 20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-size:1.4rem; font-weight:800; color:var(--accent); min-width:40px;">2</span>
+                  <div><h4 style="font-weight:600; margin-bottom:2px;">Order</h4><p style="font-size:0.9rem; color:var(--text-secondary);">User selects items, chooses pickup time, and completes checkout.</p><span style="display:inline-block; margin-top:4px; font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">😊 Positive</span></div>
+                </div>
+                <div style="display:flex; gap:20px; align-items:flex-start; padding:16px 20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-size:1.4rem; font-weight:800; color:var(--accent); min-width:40px;">3</span>
+                  <div><h4 style="font-weight:600; margin-bottom:2px;">Pick‑up</h4><p style="font-size:0.9rem; color:var(--text-secondary);">Driver arrives on time. User hands over laundry with clear instructions.</p><span style="display:inline-block; margin-top:4px; font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">😊 Positive</span></div>
+                </div>
+                <div style="display:flex; gap:20px; align-items:flex-start; padding:16px 20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-size:1.4rem; font-weight:800; color:var(--accent); min-width:40px;">4</span>
+                  <div><h4 style="font-weight:600; margin-bottom:2px;">Processing</h4><p style="font-size:0.9rem; color:var(--text-secondary);">Laundry is cleaned. User receives status updates via app or SMS.</p><span style="display:inline-block; margin-top:4px; font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">😌 Relieved</span></div>
+                </div>
+                <div style="display:flex; gap:20px; align-items:flex-start; padding:16px 20px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-size:1.4rem; font-weight:800; color:var(--accent); min-width:40px;">5</span>
+                  <div><h4 style="font-weight:600; margin-bottom:2px;">Delivery</h4><p style="font-size:0.9rem; color:var(--text-secondary);">Clean laundry is returned on time. User is satisfied and likely to reorder.</p><span style="display:inline-block; margin-top:4px; font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">😍 Delighted</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== USER FLOW ===== -->
+            <div id="userflow" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">How Users Navigate</h2>
+              <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/userflow  laundry app.png" alt="Sketch 1" style="width:100%;  object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">User flow</span>
+              </div>
+              <p class="small text-tertiary" style="text-align:center; margin-top:14px;">Guest checkout available · No sign‑up required</p>
+            </div>
+
+            <!-- ===== IA ===== -->
+            <div id="ia" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Site Map</h2>
+      
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/site map  laundry app.png" alt="Sketch 1" style="width:100%;  object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">IA</span>
+              </div>
+            </div>
+
+            <!-- ===== SKETCHES ===== -->
+            <div id="sketches" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Early Explorations</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">Rapid paper sketches to explore layout and flow.</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(100%,1fr)); gap:20px;">
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/laundry app wireframe 1.png" alt="Sketch 1" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">Home screen concept</span>
+                </div>
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/laundry app wireframe 2.png" alt="Sketch 2" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">Order flow sketch</span>
+                </div>
+          
+              </div>
+            </div>
+
+            <!-- ===== WIREFRAMES ===== -->
+            <div id="wireframes" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">From Paper to Pixels</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">Low‑fidelity wireframes validated structure and layout.</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(100%,1fr)); gap:20px;">
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/lo-fi laundry.png" alt="Wireframe 1" style="width:100%;  object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">Home</span>
+                </div>
+              
+              </div>
+            </div>
+
+            <!-- ===== DESIGN SYSTEM ===== -->
+            <div id="designsystem" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Design System</h2>
+
+              <!-- Color -->
+              <div style="margin-top:28px;">
+                <h3 style="font-weight:600; font-size:1.1rem; margin-bottom:12px;">Color Palette</h3>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                  <div style="width:100px; padding:12px; border-radius:8px; color:#fff; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#0B1121;"><span>#0B1121</span><span>Primary</span></div>
+                  <div style="width:100px; padding:12px; border-radius:8px; color:#fff; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#1E2A4A;"><span>#1E2A4A</span><span>Secondary</span></div>
+                  <div style="width:100px; padding:12px; border-radius:8px; color:#fff; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#3B82F6;"><span>#3B82F6</span><span>Accent</span></div>
+                  <div style="width:100px; padding:12px; border-radius:8px; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#F8FAFC; color:#0b1121;"><span>#F8FAFC</span><span>Background</span></div>
+                  <div style="width:100px; padding:12px; border-radius:8px; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#94A3B8; color:#0b1121;"><span>#94A3B8</span><span>Muted</span></div>
+                  <div style="width:100px; padding:12px; border-radius:8px; color:#fff; font-size:0.7rem; display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); background:#10B981;"><span>#10B981</span><span>Success</span></div>
+                </div>
+              </div>
+
+              <!-- Typography -->
+              <div style="margin-top:32px;">
+                <h3 style="font-weight:600; font-size:1.1rem; margin-bottom:12px;">Typography</h3>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;">
+                    <span style="font-weight:500; min-width:72px; font-size:0.8rem; color:var(--text-secondary);">Headings</span>
+                    <span style="font-size:1.6rem; font-weight:700; font-family:'Outfit',sans-serif;">Outfit · 700</span>
+                  </div>
+                  <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;">
+                    <span style="font-weight:500; min-width:72px; font-size:0.8rem; color:var(--text-secondary);">Body</span>
+                    <span style="font-size:1rem; font-weight:400; font-family:'Inter',sans-serif;">Inter · 400</span>
+                  </div>
+                  <div style="display:flex; align-items:baseline; gap:20px; flex-wrap:wrap;">
+                    <span style="font-weight:500; min-width:72px; font-size:0.8rem; color:var(--text-secondary);">Small</span>
+                    <span style="font-size:0.875rem; font-weight:400; font-family:'Inter',sans-serif;">Inter · 400</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Icons -->
+              <div style="margin-top:32px;">
+                <h3 style="font-weight:600; font-size:1.1rem; margin-bottom:12px;">Icons</h3>
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/laundry app icons.png" alt="Icons" style="width:100%;  object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;">App Icons</span>
+                </div>
+                <p class="small text-tertiary" style="margin-top:6px;">Custom icon set · 24px · stroke‑width 2</p>
+              </div>
+
+              <!-- Components -->
+              <div style="margin-top:32px;">
+                <h3 style="font-weight:600; font-size:1.1rem; margin-bottom:12px;">Components</h3>
+                <div style="display:flex; flex-wrap:wrap; gap:24px;">
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">Button</span>
+                    <button style="background:var(--accent); color:#fff; border:none; padding:6px 16px; border-radius:100px; font-weight:500; font-size:0.85rem; cursor:pointer;">Primary</button>
+                    <button style="background:transparent; border:1px solid var(--border); color:var(--text-primary); padding:6px 16px; border-radius:100px; font-weight:500; font-size:0.85rem; cursor:pointer;">Outline</button>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">Card</span>
+                    <div style="padding:14px; background:var(--bg-primary); border-radius:8px; border:1px solid var(--border); box-shadow:0 4px 12px var(--card-hover-shadow); min-width:120px;">
+                      <span style="font-weight:500;">Card with shadow</span>
+                      <p style="font-size:0.8rem; color:var(--text-secondary);">Content inside</p>
+                    </div>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">Badge</span>
+                    <span style="padding:2px 10px; border-radius:100px; font-size:0.7rem; font-weight:600; background:var(--border); color:var(--text-secondary); display:inline-block;">New</span>
+                    <span style="padding:2px 10px; border-radius:100px; font-size:0.7rem; font-weight:600; background:var(--status-dot); color:#fff; display:inline-block;">Complete</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spacing -->
+              <div style="margin-top:32px;">
+                <h3 style="font-weight:600; font-size:1.1rem; margin-bottom:12px;">Spacing Scale</h3>
+                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px;">
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">4px</span><div style="width:4px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">8px</span><div style="width:8px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">16px</span><div style="width:16px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">24px</span><div style="width:24px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">32px</span><div style="width:32px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">48px</span><div style="width:48px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">64px</span><div style="width:64px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                  <div style="display:flex; align-items:center; gap:6px;"><span style="font-size:0.75rem; font-weight:500; color:var(--text-tertiary);">80px</span><div style="width:80px; height:20px; background:var(--text-primary); border-radius:4px;"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== HIGH FIDELITY ===== -->
+            <div id="hifi" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Polished Screens</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">Final visual design with color, typography, and spacing applied.</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(100%,1fr)); gap:20px;">
+                <div style="background:var(--card-bg); border-radius:12px; overflow:hidden; border:1px solid var(--card-border); transition:all 0.25s ease;">
+                  <img src="../images/final screens laundry app.png" alt="High-fidelity home" style="width:100%;  height:100%; object-fit:cover; display:block; background:var(--border);" loading="lazy" />
+                  <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem;"></span>
+                </div>
+            
+              </div>
+            </div>
+
+            
+
+          
+
+            <!-- ===== REFLECTION ===== -->
+            <div id="reflection" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Learnings</h2>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--card-bg); border-radius:12px;">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:28px;">1</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Research is non‑negotiable.</strong> The survey and competitor analysis revealed gaps we would have missed otherwise.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--card-bg); border-radius:12px;">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:28px;">2</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Simplicity scales.</strong> A clean interface isn't just aesthetic — it reduces cognitive load and speeds up conversion.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--card-bg); border-radius:12px; ">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:28px;">3</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Transparency builds trust.</strong> Users are willing to pay more when they know exactly what they're getting.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:16px; padding:14px 18px; background:var(--card-bg); border-radius:12px;">
+                  <span style="font-weight:800; font-size:1.1rem; color:var(--accent); min-width:28px;">4</span>
+                  <p style="font-size:0.95rem; color:var(--text-secondary);"><strong style="color:var(--text-primary);">Guest access removes friction.</strong> Forcing sign‑up is the #1 reason users abandon a service.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== THANK YOU ===== -->
+            <div id="thankyou" class="project-content-section reveal" style="text-align:center; padding:40px 0 20px;">
+              <div style="max-width:600px; margin:0 auto;">
+              
+                <h2 style="font-size:2rem; font-weight:700; margin-bottom:12px;">Thank You</h2>
+                <p style="color:var(--text-secondary); font-size:1rem; margin-bottom:24px;">
+                  This case study was a deep dive into creating a user‑centered laundry experience.<br />
+                  Every decision was rooted in research, validated with users, and refined through iteration.
+                </p>
+                
+            
+              </div>
+            </div>
+
+          </div><!-- /project-content-block -->
+        </div><!-- /project-layout -->
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="../work.html" class="small text-tertiary footer-link">Back to work</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT (loads your existing script.js)
+       ============================================================ -->
+  <script src="../script.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1BDRFHDY8E');
+</script>
+</body>
+</html>

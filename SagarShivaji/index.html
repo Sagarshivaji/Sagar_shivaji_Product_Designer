@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sagar Shivaji · AI Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Subtle gradient mesh background -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="active">Home</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume ↗</a>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="work/gymogram.html">
+          <span class="command-item-left">Gymogram — Social Fitness Platform</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="work/laundry-app.html">
+          <span class="command-item-left">Laundry App</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation — Floating Pill -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume ↗</a>
+        <div class="nav-divider"></div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE CONTENT -->
+  <div class="page" id="page-home">
+    <main class="container">
+
+      <!-- HERO -->
+      <section class="hero-section reveal">
+        <div class="hero-grid">
+          <div class="hero-intro">
+            <div class="availability">
+              <span class="status-dot"></span>
+              <span class="small font-medium" style="color:#16a34a;">Available for select enterprise projects</span>
+              <span class="bullet-divider">·</span>
+              <span class="small text-tertiary">Hyderabad, India</span>
+            </div>
+            <h1 class="display-xl" style="margin-bottom:28px;">
+              Designing AI-powered enterprise products that simplify complex workflows.
+            </h1>
+            <p class="body-large" style="margin-bottom:44px; max-width:600px;">
+              I am an AI Product Designer specializing in B2B SaaS. I transform massive datasets and intricate user flows into intuitive, high-performance web products through rigorous systems thinking and modern design craft.
+            </p>
+            <div style="display:flex; gap:14px; flex-wrap:wrap;">
+              <a href="work.html" class="btn btn-primary btn-large">View selected work</a>
+              <a href="about.html" class="btn btn-secondary btn-large">Read philosophy</a>
+            </div>
+          </div>
+          <div class="portrait-container">
+            <div class="portrait-glow"></div>
+            <div class="portrait">
+              <img src="images/my-drawing.png" alt="Sagar Shivaji portrait" width="300" height="400">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider reveal"></div>
+
+      <!-- SELECTED WORK + RESEARCH PREVIEW -->
+      <section class="page-section reveal" style="padding: 40px 0 80px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:56px; flex-wrap:wrap; gap:16px;">
+          <h2 class="heading-2 font-semibold">Selected Work</h2>
+          <span class="caption accent-text font-semibold">Product Design &amp; Research</span>
+        </div>
+
+        <!-- 1. Gymogram -->
+        <div class="case-card" onclick="window.location.href='work/gymogram.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">Product Design · 2026</span>
+              <span class="caption text-tertiary">10 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Gymogram — Social Fitness Platform</h3>
+            <p class="body-base" style="margin-bottom:20px;">A fitness experience that combines personalized workouts, community engagement, and gamification.</p>
+            <div class="case-meta">
+              <span class="meta-tag">Fitness &amp; Social</span>
+              <span class="meta-tag">Product Designer</span>
+              <span class="meta-tag">Gamification</span>
+              <span class="meta-tag">iOS Design</span>
+            </div>
+            <a href="work/gymogram.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/gymogram/hero.png" alt="Gymogram Fitness App" style="filter:none; opacity:1;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Job Pulse -->
+        <div class="case-card reveal" onclick="window.location.href='work/job-pulse.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">Live App · 2026</span>
+              <span class="caption text-tertiary">Real-time</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Job Pulse · Alert Dashboard</h3>
+            <p class="body-base" style="margin-bottom:20px;">A real-time job aggregation dashboard scanning RSS feeds with customizable filters, a sleek UI, and automated alerts.</p>
+            <div class="case-meta" style="margin-bottom:20px;">
+              <span class="meta-tag">Full-Stack Development</span>
+              <span class="meta-tag">UI/UX Design</span>
+            </div>
+            <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+              <a href="https://job-pulse-toie.onrender.com/" class="btn btn-primary" target="_blank" onclick="event.stopPropagation();" style="padding:8px 18px; font-size:13px;">View Live App ↗</a>
+              <a href="work/job-pulse.html" class="btn btn-secondary" onclick="event.stopPropagation();" style="padding:8px 18px; font-size:13px;">View Case Study →</a>
+            </div>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/Screenshot 2026-08-10 002041.png" alt="Job Pulse Alert Dashboard">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Bench Sales -->
+        <div class="case-card" onclick="window.location.href='work/bench-sales.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">Shipped · 2025</span>
+              <span class="caption text-tertiary">8 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">AI-Powered Bench Sales Platform</h3>
+            <p class="body-base" style="margin-bottom:20px;">Designed an AI-powered Bench Sales platform that simplifies consultant tracking, submission management, and recruiter decision-making.</p>
+            <div class="case-meta">
+              <span class="meta-tag">Staffing &amp; Recruitment</span>
+              <span class="meta-tag">AI Product Designer</span>
+              <span class="meta-tag">AI Integration</span>
+              <span class="meta-tag">under NDA</span>
+            </div>
+            <a href="work/bench-sales.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/benchsales.png" alt="Bench Sales Platform" style="filter:blur(8px); opacity:0.5;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Laundry App -->
+        <div class="case-card reveal" onclick="window.location.href='work/laundry-app.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">Concept · 2026</span>
+              <span class="caption text-tertiary">30 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Laundry Service · UX Case Study</h3>
+            <p class="body-base" style="margin-bottom:20px;">End-to-end research and design for an on‑demand laundry app — addressing transparency, tracking, and simplicity.</p>
+            <div class="case-meta">
+              <span class="meta-tag">UX Research</span>
+              <span class="meta-tag">Product Design</span>
+            </div>
+            <a href="work/laundry-app.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/laundry app hero section.png" alt="Laundry service app concept">
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================ -->
+        <!-- RESEARCH CASE STUDIES            -->
+        <!-- ================================ -->
+
+        <!-- 5. Stripe Homepage -->
+        <div class="case-card" onclick="window.location.href='research/stripe.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">UX Reverse Engineering · 2026</span>
+              <span class="caption text-tertiary">30 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Stripe Homepage</h3>
+            <p class="body-base" style="margin-bottom:20px;">How Stripe communicates a complex product to multiple audiences while guiding them toward conversion.</p>
+            <div class="case-meta">
+              <span class="meta-tag">Financial Technology</span>
+              <span class="meta-tag">UX Research</span>
+              <span class="meta-tag">Information Hierarchy</span>
+            </div>
+            <a href="research/stripe.html" class="card-cta" onclick="event.stopPropagation();">View research <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/stripe/stripe homepage.png" alt="Stripe homepage analysis">
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Zoho Inventory -->
+        <div class="case-card" onclick="window.location.href='research/Zoho.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:12px; margin-bottom:16px; align-items:center;">
+              <span class="caption accent-text font-semibold">UX Reverse Engineering + AI · 2026</span>
+              <span class="caption text-tertiary">35 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Zoho Inventory</h3>
+            <p class="body-base" style="margin-bottom:20px;">Reverse‑engineering a complex B2B inventory system and imagining an AI‑powered predictive layer.</p>
+            <div class="case-meta">
+              <span class="meta-tag">B2B SaaS</span>
+              <span class="meta-tag">Inventory Management</span>
+              <span class="meta-tag">AI Prediction</span>
+            </div>
+            <a href="/research/Zoho.html" class="card-cta" onclick="event.stopPropagation();">View research <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/zoho/zoho inventory hero.jfif" alt="Zoho Inventory research">
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="section-divider reveal"></div>
+
+      <!-- PHILOSOPHY PREVIEW -->
+      <section class="page-section reveal" style="padding: 80px 0;">
+        <div class="philosophy-grid">
+          <div>
+            <h2 class="heading-3 font-semibold" style="margin-bottom:24px;">Philosophy</h2>
+            <p class="body-large text-primary" style="margin-bottom:24px; font-weight:500;">
+              Simplicity through thoughtful design. AI that empowers people. Every interaction should make work clearer, faster, and more meaningful.
+            </p>
+            <p class="body-base text-secondary">
+              I design digital products that combine human-centered design, systems thinking, and AI to solve complex problems. My focus is on creating intuitive, scalable experiences that improve collaboration, simplify workflows, and help people and businesses achieve better outcomes.
+            </p>
+          </div>
+          <div class="metrics-container">
+            <div class="metric-card">
+              <div class="metric-value-row">
+                <span class="display-lg metric-number font-bold" data-target="1">1</span><span class="display-lg accent-text font-bold">+</span>
+              </div>
+              <p class="small text-secondary font-medium">Years in product design</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value-row">
+                <span class="display-lg metric-number font-bold" data-target="6">0</span><span class="display-lg accent-text font-bold">+</span>
+              </div>
+              <p class="small text-secondary font-medium">Enterprise Products Designed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider reveal"></div>
+
+      <!-- AI DESIGN PARTNER SECTION -->
+      <section class="page-section reveal" style="padding: 80px 0 120px;">
+        <h2 class="heading-3 font-semibold" style="margin-bottom:16px;">AI as Design Partner</h2>
+        <p class="body-base text-secondary" style="margin-bottom:48px; max-width:620px;">
+          A systematic framework describing how I incorporate agentic AI and machine intelligence throughout my end-to-end design process. Click any phase below to examine details.
+        </p>
+
+        <div class="ai-workflow-container" id="aiWorkflow">
+          <div class="workflow-step" data-step="1">
+            <div class="step-icon">1</div>
+            <div class="step-content">
+              <strong>Discovery &amp; Data Collection</strong>
+              <p class="small text-secondary">User pattern discovery &amp; AI qualitative clustering</p>
+            </div>
+          </div>
+          <div class="ai-detail-card" id="detailCard1">
+            <h4>Discovery Phase</h4>
+            <p>I feed raw stakeholder transcripts, ticket lists, and user feedback logs into LLMs to automatically cluster behaviors, pain points, and friction points. This drastically speeds up finding initial directional hypotheses.</p>
+            <div class="ai-detail-meta">
+              <span>⏱ Timeline: 2-3 weeks</span>
+              <span>👥 Collaborators: Design, PM, UX Research</span>
+            </div>
+            <div class="ai-progress-dots">
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+            </div>
+          </div>
+
+          <div class="workflow-step" data-step="2">
+            <div class="step-icon">2</div>
+            <div class="step-content">
+              <strong>Research Synthesis</strong>
+              <p class="small text-secondary">AI extracts core user needs; I craft strategic requirements</p>
+            </div>
+          </div>
+          <div class="ai-detail-card" id="detailCard2">
+            <h4>Research Synthesis</h4>
+            <p>The AI highlights themes and organizes them into functional buckets. I validate these findings, remove hallucinations, and formulate the final design strategy and product requirements.</p>
+            <div class="ai-detail-meta">
+              <span>⏱ Timeline: 1-2 weeks</span>
+              <span>👥 Collaborators: Product Design</span>
+            </div>
+            <div class="ai-progress-dots">
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+            </div>
+          </div>
+
+          <div class="workflow-step" data-step="3">
+            <div class="step-icon">3</div>
+            <div class="step-content">
+              <strong>Journey Mapping &amp; Wireframing</strong>
+              <p class="small text-secondary">Collaborative flow synthesis using real-time mockups</p>
+            </div>
+          </div>
+          <div class="ai-detail-card" id="detailCard3">
+            <h4>Journey Mapping</h4>
+            <p>We generate draft flows with AI mapping tools. We review these drafts with engineering teams to flag edge cases and technical constraints before entering the high-fidelity UI design phase.</p>
+            <div class="ai-detail-meta">
+              <span>⏱ Timeline: 1 week</span>
+              <span>👥 Collaborators: Design + Frontend Eng</span>
+            </div>
+            <div class="ai-progress-dots">
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot"></div>
+              <div class="ai-progress-dot"></div>
+            </div>
+          </div>
+
+          <div class="workflow-step" data-step="4">
+            <div class="step-icon">4</div>
+            <div class="step-content">
+              <strong>Rapid Prototyping</strong>
+              <p class="small text-secondary">Code-based prototypes to test accessibility &amp; logic</p>
+            </div>
+          </div>
+          <div class="ai-detail-card" id="detailCard4">
+            <h4>Rapid Prototyping</h4>
+            <p>Using code assistants to write functional HTML/JS prototypes of complex UI transitions and custom keyboard navigation logic, which helps with interactive user testing.</p>
+            <div class="ai-detail-meta">
+              <span>⏱ Timeline: 2 weeks</span>
+              <span>👥 Collaborators: Design + Frontend Eng</span>
+            </div>
+            <div class="ai-progress-dots">
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot"></div>
+            </div>
+          </div>
+
+          <div class="workflow-step" data-step="5">
+            <div class="step-icon">5</div>
+            <div class="step-content">
+              <strong>Launch, Observe &amp; Refine</strong>
+              <p class="small text-secondary">Real-world data checks &amp; automated product optimization</p>
+            </div>
+          </div>
+          <div class="ai-detail-card" id="detailCard5">
+            <h4>Launch &amp; Learn</h4>
+            <p>Post-launch telemetry is clustered by AI agents to highlight recurring user errors, page slowdowns, or friction points, which feeds directly back into the next design iteration.</p>
+            <div class="ai-detail-meta">
+              <span>⏱ Timeline: Continuous</span>
+              <span>👥 Collaborators: Core Product Team</span>
+            </div>
+            <div class="ai-progress-dots">
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+              <div class="ai-progress-dot filled"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/sagar-shivaji-090904262/" class="small text-tertiary footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" class="small text-tertiary footer-link" target="_blank" rel="noopener">Read.cv</a>
+          <a href="https://www.behance.net/sagarshivaji" class="small text-tertiary footer-link" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1BDRFHDY8E');
+  </script>
+</body>
+</html>

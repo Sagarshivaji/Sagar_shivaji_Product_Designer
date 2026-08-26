@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Designing for Non-Deterministic Outputs · Sagar Shivaji</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../work.html">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="../index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="../work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="../about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="../research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="../work/bench-sales.html">
+          <span class="command-item-left">Bench Sales</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="../work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="../work/laundry-app.html">
+          <span class="command-item-left">laundry app</span>
+          <span class="command-shortcut">3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation Bar -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='../index.html'">
+        <span class="logo-mark">S</span>
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <a href="https://drive.google.com/file/d/1omRwBxiVvXAOk9VDr32E-N42kdvG65BI/view" target="_blank">Resume</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- RESEARCH ARTICLE CONTENT -->
+  <div class="page">
+    <main class="container" style="padding: 120px 0 60px;">
+      <article class="reading-width reveal">
+        <a href="../research.html" class="btn btn-ghost" style="padding-left:0; margin-bottom:32px; font-weight: 500;">
+          <span style="margin-right: 8px;">←</span> Back to research
+        </a>
+
+        <header style="margin-bottom: 40px;">
+          <span class="caption accent-text font-semibold">AI Design · 2025</span>
+          <h1 class="heading-1 font-semibold" style="margin: 16px 0; line-height: 1.2;">Designing for non-deterministic outputs</h1>
+          <p class="body-large text-secondary">How we construct predictable user interfaces and interaction models around stochastic machine intelligence systems.</p>
+        </header>
+
+        <section class="article-body text-secondary" style="font-size: 16px; line-height: 1.8;">
+          <p style="margin-bottom: 24px;">
+            Unlike traditional software interfaces where entering command <code>A</code> always yields result <code>B</code>, generative AI platforms yield stochastic, non-deterministic outputs. Two users entering the same prompt might get completely different visual representations, code, or answers. As designers, this requires shifting our mental models from static UI flows to dynamic interaction envelopes.
+          </p>
+          
+          <h3 class="heading-3 font-semibold text-primary" style="margin: 40px 0 16px;">The Trust Horizon</h3>
+          <p style="margin-bottom: 24px;">
+            In traditional systems, user trust is built on reliability and consistency. In AI-powered products, trust is built on <strong>transparency and validation tools</strong>. If a financial analyst asks an agent to calculate a company's debt-to-equity ratio, the system must show its mathematical reasoning:
+          </p>
+          <blockquote style="border-left: 3px solid var(--accent); padding-left: 20px; font-style: italic; margin-bottom: 24px; color: var(--text-primary);">
+            "Showing the data tables used, the active variables, and the step-by-step query logic immediately builds confidence. Users do not need an AI that makes no mistakes; they need an AI whose mistakes they can easily audit."
+          </blockquote>
+
+          <h3 class="heading-3 font-semibold text-primary" style="margin: 40px 0 16px;">Interaction Patterns for Stochastic UI</h3>
+          <p style="margin-bottom: 16px;">
+            To handle non-determinism, we recommend three core UI patterns:
+          </p>
+          <ul style="padding-left: 20px; margin-bottom: 24px;">
+            <li style="margin-bottom: 12px;"><strong>Intent Scaffolding</strong>: Prompt suggestion nodes that guide the user on syntax and boundaries before they execute queries.</li>
+            <li style="margin-bottom: 12px;"><strong>Calculated Confidence Badges</strong>: Visually rating data outputs (e.g. high/medium confidence) and highlighting anomalous data points.</li>
+            <li style="margin-bottom: 12px;"><strong>Interactive Editability</strong>: Letting users double-click AI results and manually override them, converting raw outputs into collaborative canvas states.</li>
+          </ul>
+
+          <h3 class="heading-3 font-semibold text-primary" style="margin: 40px 0 16px;">Conclusion</h3>
+          <p style="margin-bottom: 24px;">
+            Designing for AI means designing for human agency. The best interfaces do not hide the non-deterministic nature of the underlying models; they highlight it responsibly, giving users the diagnostic steering wheels to refine outputs into high-utility workflows.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="../research.html" class="small text-tertiary footer-link">Back to research</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

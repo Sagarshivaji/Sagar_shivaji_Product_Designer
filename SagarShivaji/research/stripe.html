@@ -1,0 +1,901 @@
+<!--
+  ============================================================
+  UX Reverse Engineering · Stripe Homepage
+  Fits into existing portfolio CSS/JS structure
+  Place this file in your /work/ directory (e.g., work/stripe.html)
+  ============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Stripe Homepage · UX Reverse Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root {
+      --accent: #FF4FD5;
+      --text-secondary:#ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../work.html">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus />
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="../index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="../work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="../about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="../research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="../work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="../work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="../work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="../work/stripe.html">
+          <span class="command-item-left">Stripe Homepage · UX Reverse Engineering</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DESKTOP NAVIGATION BAR
+       ============================================================ -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='../index.html'">
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../work.html" class="active">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <a href="https://drive.google.com/file/d/1omRwBxiVvXAOk9VDr32E-N42kdvG65BI/view" target="_blank">Resume</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       CASE STUDY: STRIPE HOMEPAGE · UX REVERSE ENGINEERING
+       ============================================================ -->
+  <div class="page" id="page-project-stripe">
+    <main class="project-container">
+      <section class="page-section">
+
+        <!-- Back link -->
+        <a href="../work.html" class="btn btn-ghost reveal" style="padding-left:0; margin-bottom:32px; font-weight: 500;">
+          <span style="margin-right:8px;">←</span> Back to work
+        </a>
+
+        <!-- Hero -->
+        <div class="reveal">
+          <span class="caption accent-text font-semibold">UX Reverse Engineering · 2026</span>
+          <h1 class="heading-1 font-semibold" style="margin:16px 0; max-width:840px;">Stripe Homepage</h1>
+          <p class="body-large text-secondary" style="max-width:720px; margin-bottom:8px;">
+            Understanding how Stripe turns a complex financial infrastructure platform into a clear, persuasive website experience.
+          </p>
+        </div>
+
+        <!-- Info Bar -->
+        <div class="project-info-bar reveal">
+          <div class="project-info-item">
+            <span class="small text-tertiary">Role</span>
+            <strong class="text-primary">UX Researcher &amp; Reverse Engineering</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Industry</span>
+            <strong class="text-primary">Financial Technology (FinTech)</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Timeline</span>
+            <strong class="text-primary">1 week</strong>
+          </div>
+          <div class="project-info-item">
+            <span class="small text-tertiary">Reading time</span>
+            <strong class="text-primary">30 min</strong>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="project-hero-image-wrapper reveal">
+          <!-- KEEP original uploaded image -->
+          <img src="../images/stripe/stripe homepage.png" alt="Stripe homepage" class="project-hero-img" loading="lazy" />
+        </div>
+
+        <!-- Project Layout: Sticky Nav + Content -->
+        <div class="project-layout">
+
+          <!-- Sticky Sidebar Navigation -->
+          <nav class="sticky-nav">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#problem">The Challenge</a>
+            <a href="#research">My Core Finding</a>
+            <a href="#survey">Establishing Position</a>
+            <a href="#painpoints">Enterprise Trust</a>
+            <a href="#insights">Customer Evidence</a>
+            <a href="#competitors">Reducing Risk</a>
+            <a href="#personas">Startups</a>
+            <a href="#empathy">SaaS &amp; Developers</a>
+            <a href="#journey">Storytelling Architecture</a>
+            <a href="#userflow">Repeated Pattern</a>
+            <a href="#ia">Audience Segmentation</a>
+            <a href="#sketches">Changed My Approach</a>
+            <a href="#thankyou">Thank You</a>
+          </nav>
+
+          <!-- Content Block -->
+          <div class="project-content-block">
+
+            <!-- ===== OVERVIEW ===== -->
+            <div id="overview" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Overview</h2>
+              <div class="project-section-grid">
+                <div class="project-summary-text">
+                  <p class="body-large text-primary" style="margin-bottom:16px;">
+                    Stripe provides financial infrastructure for businesses ranging from early-stage startups to global enterprises.
+                  </p>
+                  <p class="body-base text-secondary" style="margin-bottom:16px;">
+                    But Stripe has a difficult website communication problem. Its audience isn't one type of user. The website needs to communicate with:
+                  </p>
+                  <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Founders</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Business owners</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Enterprise leaders</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Product teams</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Developers</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">SaaS platforms</span>
+                    <span style="background:var(--step-icon-bg); padding:6px 16px; border-radius:100px; border:1px solid var(--border); font-size:13px; color:var(--text-primary);">Technical decision-makers</span>
+                  </div>
+                  <p class="body-base text-secondary">
+                    Each audience has different needs, concerns, and levels of technical understanding. So instead of studying Stripe purely from a visual-design perspective, I reverse-engineered its homepage to understand: <strong style="color:var(--text-primary);">How does Stripe communicate a complex product to multiple audiences while guiding them toward conversion?</strong>
+                  </p>
+                </div>
+              </div>
+              <!-- Image: Stripe homepage hero / diverse audience -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder with online image -->
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Diverse team collaborating, representing Stripe's multiple audiences" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Stripe speaks to multiple audiences on one page</span>
+              </div>
+            </div>
+
+            <!-- ===== PROBLEM ===== -->
+            <div id="problem" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The Core Challenge</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Stripe isn't selling one simple product. Its ecosystem includes payments, billing, financial infrastructure, embedded finance, developer APIs, integrations, enterprise services, and more.
+              </p>
+              <p class="body-base text-secondary" style="margin-bottom:20px;">
+                That creates a communication challenge:
+              </p>
+              <div style="background:#FF4FD5;; border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px); margin-bottom:16px;">
+                <p style="font-size:1.15rem; font-weight:600; color:var(--text-primary); text-align:center; margin:0;">
+                  "How do you explain a large ecosystem without overwhelming the visitor?"
+                </p>
+              </div>
+              <p class="body-base text-secondary">
+                I studied the homepage looking specifically at: <strong style="color:var(--text-primary);">Information hierarchy → Audience segmentation → Storytelling → Trust → Social proof → Objection handling → CTAs → Conversion.</strong>
+              </p>
+            </div>
+
+            <!-- ===== RESEARCH ===== -->
+            <div id="research" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">My Core Finding</h2>
+              <p class="body-base text-secondary" style="margin-bottom:20px;">
+                My biggest finding was that Stripe's homepage isn't simply a collection of product sections. <strong style="color:var(--text-primary);">It behaves more like a decision journey.</strong>
+              </p>
+              <p class="body-base text-secondary" style="margin-bottom:20px;">
+                The page progressively answers questions a potential customer may have:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:20px;">
+                <!-- (questions list kept unchanged) -->
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">What is Stripe?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">What can it do for my business?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Can I trust it?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Does a company like mine use it?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Can it handle my scale?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Will it work with my existing systems?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">How difficult is implementation?</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:8px 16px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.9rem; min-width:20px;">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">How can I get started?</p>
+                </div>
+              </div>
+              <p class="body-base text-secondary">
+                This turns a technically complex platform into a more understandable narrative.
+              </p>
+              <!-- Image: Decision journey diagram (KEEP original uploaded journey map) -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <img
+                    src="../images/stripe/journey map.png"
+                    alt="Decision journey flow showing progressive questions"
+                    class="project-hero-img"
+                    loading="lazy"
+                    style="width: 100%; height: fit-content; object-fit: contain; display: block;"
+                />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">The progressive decision journey on Stripe's homepage</span>
+              </div>
+            </div>
+
+            <!-- ===== SURVEY ===== -->
+            <div id="survey" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Establishing Stripe's Position</h2>
+              <div style="background:#FF4FD5; border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px); margin-bottom:20px;">
+                <p style="font-size:1.3rem; font-weight:700; color:var(--text-primary); text-align:center; margin:0 0 4px 0;">
+                  "The backbone of global commerce"
+                </p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); text-align:center; margin:0;">Stripe's positioning statement</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Stripe uses a strong positioning statement rather than immediately explaining individual features. The message positions Stripe as infrastructure behind digital commerce, rather than simply another payment processor.
+              </p>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                But Stripe doesn't leave this as an unsupported marketing claim. It immediately follows the statement with measurable evidence:
+              </p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+                <!-- (metrics cards unchanged) -->
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:1.8rem; font-weight:700; color:var(--accent); display:block;">135+</span>
+                  <p class="small text-secondary" style="margin:0;">currencies and payment methods supported</p>
+                  <span style="font-size:0.75rem; color:var(--text-tertiary);">→ Global reach</span>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:1.8rem; font-weight:700; color:var(--accent); display:block;">US$1.9tn</span>
+                  <p class="small text-secondary" style="margin:0;">in payments volume processed in 2025</p>
+                  <span style="font-size:0.75rem; color:var(--text-tertiary);">→ Scale</span>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:1.8rem; font-weight:700; color:var(--accent); display:block;">99.999%</span>
+                  <p class="small text-secondary" style="margin:0;">historical uptime for Stripe services</p>
+                  <span style="font-size:0.75rem; color:var(--text-tertiary);">→ Reliability</span>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px;">
+                  <span style="font-size:1.8rem; font-weight:700; color:var(--accent); display:block;">200m+</span>
+                  <p class="small text-secondary" style="margin:0;">active subscriptions managed on Stripe Billing</p>
+                  <span style="font-size:0.75rem; color:var(--text-tertiary);">→ Adoption</span>
+                </div>
+              </div>
+              <div style="background:var(--bg-surface); border-radius:12px; padding:16px 20px;">
+                <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Design pattern</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">Claim → Quantifiable proof → Visual reinforcement</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-top:16px;">
+                <strong style="color:var(--text-primary);">My takeaway:</strong> Instead of telling users "We're global, reliable and scalable," Stripe provides evidence that allows users to reach that conclusion themselves.
+              </p>
+            </div>
+
+            <!-- ===== PAIN POINTS ===== -->
+            <div id="painpoints" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Moving From Scale to Enterprise Trust</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                After establishing infrastructure credibility, Stripe moves toward enterprise customers.
+              </p>
+              <div style="background:#FF4FD5; border:1px solid var(--card-border); border-radius:16px; padding:20px 24px; backdrop-filter:blur(8px); margin-bottom:16px;">
+                <p style="font-size:1.15rem; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">"Powering businesses of all sizes."</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">The page communicates that Stripe isn't limited to startups.</p>
+              </div>
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:20px; margin-bottom:16px;">
+                <span style="font-size:2rem; font-weight:700; color:var(--accent); display:block;">50%</span>
+                <p class="body-base text-secondary" style="margin:0;">of Fortune 100 companies have used Stripe to grow their businesses.</p>
+              </div>
+              <p class="body-base text-secondary">
+                This directly addresses an enterprise concern: <strong style="color:var(--text-primary);">"Do organizations at our scale actually use this?"</strong>
+              </p>
+              <!-- Image: Enterprise trust section -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Modern corporate skyscraper representing enterprise trust" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Enterprise messaging and Fortune 100 social proof</span>
+              </div>
+            </div>
+
+            <!-- ===== INSIGHTS ===== -->
+            <div id="insights" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Turning Claims Into Customer Evidence</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Stripe then introduces recognizable customer stories. Instead of simply displaying company logos, Stripe connects companies with specific outcomes.
+              </p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;">
+                <!-- customer cards unchanged -->
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Hertz</p>
+                  <p class="small text-secondary" style="margin:0;">Unifies commerce with Stripe</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">URBN</p>
+                  <p class="small text-secondary" style="margin:0;">Powers multi-brand retail</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Instacart</p>
+                  <p class="small text-secondary" style="margin:0;">Scales grocery delivery payments</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Le Monde</p>
+                  <p class="small text-secondary" style="margin:0;">Manages digital subscriptions</p>
+                </div>
+              </div>
+              <div style="background:var(--bg-surface); border-radius:12px; padding:16px 20px;">
+                <p style="font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Design pattern</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">Customer → Problem/Outcome → Stripe</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-top:16px;">
+                <strong style="color:var(--text-primary);">My takeaway:</strong> A customer logo tells me who uses the product. A customer outcome tells me why they use it.
+              </p>
+              <!-- Image: Customer evidence grid -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder (was startups.png) -->
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Diverse business team celebrating success, representing customer outcomes" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Customer logos paired with specific business outcomes</span>
+              </div>
+            </div>
+
+            <!-- ===== COMPETITORS ===== -->
+            <div id="competitors" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Reducing Enterprise Adoption Risk</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                After convincing the visitor that large organizations use Stripe, another question naturally appears: <strong style="color:var(--text-primary);">"How difficult will implementation be?"</strong>
+              </p>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">Stripe addresses this with:</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:20px;">
+                <!-- support cards unchanged -->
+                <div style="background:var(--accent); border:1px solid var(--card-border); border-radius:12px; padding:18px;">
+                  <span class="material-icons" style="font-size:1.8rem; display:block; margin-bottom:6px;">construction</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:0 0 4px 0;">Professional services</h4>
+                  <p class="small text-secondary" style="margin:0;">Guidance for implementation, complex integrations and migrations.</p>
+                </div>
+                <div style="background:var(--accent); border:1px solid var(--card-border); border-radius:12px; padding:18px;">
+                  <span class="material-icons" style="font-size:1.8rem; display:block; margin-bottom:6px;">handshake</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:0 0 4px 0;">Stripe-certified experts</h4>
+                  <p class="small text-secondary" style="margin:0;">External partners capable of integrating and deploying Stripe solutions.</p>
+                </div>
+                <div style="background:var(--accent); border:1px solid var(--card-border); border-radius:12px; padding:18px;">
+                  <span class="material-icons" style="font-size:1.8rem; display:block; margin-bottom:6px;">phone</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:0 0 4px 0;">Support plans</h4>
+                  <p class="small text-secondary" style="margin:0;">Ongoing technical assistance after implementation.</p>
+                </div>
+              </div>
+              <p class="body-base text-secondary">
+                The message changes from <strong style="color:var(--text-primary);">"Our technology is powerful"</strong> to <strong style="color:var(--text-primary);">"You won't have to implement it alone."</strong>
+              </p>
+              <p class="body-base text-secondary" style="margin-top:12px;">
+                <strong style="color:var(--text-primary);">My takeaway:</strong> Good product storytelling doesn't only communicate benefits. It identifies what might prevent the user from adopting the product and addresses those concerns.
+              </p>
+              <!-- Image: Support and implementation options -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop" alt="Customer support team helping with implementation" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Stripe reduces adoption risk with implementation support</span>
+              </div>
+            </div>
+
+            <!-- ===== PERSONAS ===== -->
+            <div id="personas" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Changing the Story for Startups</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Stripe then changes audiences.
+              </p>
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:20px 24px; backdrop-filter:blur(8px); margin-bottom:16px;">
+                <p style="font-size:1.15rem; font-weight:600; color:var(--text-primary); margin:0;">"Build a foundation for your startup that enables faster growth."</p>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+                <!-- enterprise vs startup priorities unchanged -->
+                <div>
+                  <p style="font-weight:600; color:var(--text-primary); font-size:0.9rem; margin-bottom:8px;">Enterprise users care about:</p>
+                  <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <span style="font-size:0.8rem; background:var(--bg-surface); padding:4px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Reliability</span>
+                    <span style="font-size:0.8rem; background:var(--bg-surface); padding:4px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Scale</span>
+                    <span style="font-size:0.8rem; background:var(--bg-surface); padding:4px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Migration</span>
+                    <span style="font-size:0.8rem; background:var(--bg-surface); padding:4px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-secondary);">Support</span>
+                  </div>
+                </div>
+                <div>
+                  <p style="font-weight:600; color:var(--text-primary); font-size:0.9rem; margin-bottom:8px;">Startup users have different priorities:</p>
+                  <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <span style="font-size:0.8rem; background:var(--accent); padding:4px 12px; border-radius:100px; color:#fff;">Speed</span>
+                    <span style="font-size:0.8rem; background:var(--accent); padding:4px 12px; border-radius:100px; color:#fff;">Flexibility</span>
+                    <span style="font-size:0.8rem; background:var(--accent); padding:4px 12px; border-radius:100px; color:#fff;">Easy integration</span>
+                    <span style="font-size:0.8rem; background:var(--accent); padding:4px 12px; border-radius:100px; color:#fff;">Growth</span>
+                  </div>
+                </div>
+              </div>
+              <p class="body-base text-secondary" style="margin-bottom:12px;">
+                Stripe therefore changes the value proposition while keeping the same underlying product ecosystem. The section also introduces social proof around modern high-growth companies:
+              </p>
+              <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+                <span style="font-weight:600; color:var(--text-primary); font-size:0.95rem;">Lovable</span>
+                <span style="color:var(--text-tertiary);">·</span>
+                <span style="font-weight:600; color:var(--text-primary); font-size:0.95rem;">Gamma</span>
+                <span style="color:var(--text-tertiary);">·</span>
+                <span style="font-weight:600; color:var(--text-primary); font-size:0.95rem;">Runway</span>
+                <span style="color:var(--text-tertiary);">·</span>
+                <span style="font-weight:600; color:var(--text-primary); font-size:0.95rem;">Supabase</span>
+              </div>
+              <p class="body-base text-secondary">
+                The message becomes: <strong style="color:var(--text-primary);">"Companies building what's next are building on Stripe."</strong>
+              </p>
+              <p class="body-base text-secondary" style="margin-top:12px;">
+                <strong style="color:var(--text-primary);">My takeaway:</strong> Same product. Different audience. Different motivation. Different story.
+              </p>
+              <!-- Image: Startup-focused section -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Young startup team collaborating in a modern workspace" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Startup-specific value proposition and aspirational social proof</span>
+              </div>
+            </div>
+
+            <!-- ===== EMPATHY ===== -->
+            <div id="empathy" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">SaaS Platforms, Developers &amp; Technical Proof</h2>
+
+              <!-- SaaS Platforms -->
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:20px 24px; backdrop-filter:blur(8px); margin-bottom:20px;">
+                <p style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">"Make your SaaS platform a complete financial operating system."</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">Stripe communicates: use our infrastructure to add financial capabilities to your own product.</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Rather than explaining embedded finance through a long paragraph, Stripe demonstrates capabilities — Payments, Payouts, Financing, Notifications — inside a SaaS-style interface. <strong style="color:var(--text-primary);">Show the product in the context where the user would actually experience it.</strong>
+              </p>
+
+              <!-- Developers -->
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:20px 24px; backdrop-filter:blur(8px); margin-bottom:20px;">
+                <p style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">"Reliable, extensible infrastructure for every stack."</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">The page shifts toward technical decision-makers.</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                A developer or CTO evaluating Stripe may have a different concern: <strong style="color:var(--text-primary);">"Will this work with the systems we already have?"</strong> Stripe addresses this through APIs, SDKs, partner applications, pre-built integrations, developer documentation, and GitHub.
+              </p>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                The message is essentially: <strong style="color:var(--text-primary);">"Stripe adapts to your architecture rather than forcing your architecture to adapt to Stripe."</strong>
+              </p>
+
+              <!-- Technical Scalability -->
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:20px 24px; backdrop-filter:blur(8px); margin-bottom:16px;">
+                <p style="font-size:1.1rem; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">"Scale with confidence."</p>
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin:0;">Stripe doesn't rely on adjectives like fast, powerful or scalable. It provides numbers.</p>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:16px;">
+                <!-- scalability metrics unchanged -->
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:18px; text-align:center;">
+                  <span style="font-size:1.6rem; font-weight:700; color:var(--accent); display:block;">500m+</span>
+                  <p class="small text-secondary" style="margin:0;">API requests per day</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:18px; text-align:center;">
+                  <span style="font-size:1.6rem; font-weight:700; color:var(--accent); display:block;">10k+</span>
+                  <p class="small text-secondary" style="margin:0;">API requests per second</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:18px; text-align:center;">
+                  <span style="font-size:1.6rem; font-weight:700; color:var(--accent); display:block;">150k+</span>
+                  <p class="small text-secondary" style="margin:0;">transactions per minute</p>
+                </div>
+              </div>
+              <p class="body-base text-secondary">
+                These metrics turn an abstract claim about scalability into something measurable. <strong style="color:var(--text-primary);">The higher the perceived risk of a decision, the more important specific evidence becomes.</strong>
+              </p>
+
+              <!-- Integration Paths -->
+              <p class="body-base text-secondary" style="margin-top:20px; margin-bottom:12px;">
+                Once Stripe has established technical confidence, the page moves toward implementation with <strong style="color:var(--text-primary);">three integration paths:</strong>
+              </p>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.8rem;">Path 01</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:4px 0;">No-code</h4>
+                  <p class="small text-secondary" style="margin:0;">For users who don't want to develop an integration. Use existing Stripe functionality.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.8rem;">Path 02</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:4px 0;">Pre-integrated platforms</h4>
+                  <p class="small text-secondary" style="margin:0;">For businesses already operating through other platforms.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.8rem;">Path 03</span>
+                  <h4 style="font-weight:600; font-size:0.95rem; margin:4px 0;">Custom integration</h4>
+                  <p class="small text-secondary" style="margin:0;">SDKs, APIs, MCP, developer tools for full flexibility.</p>
+                </div>
+              </div>
+              <p class="body-base text-secondary" style="margin-top:12px;">
+                <strong style="color:var(--text-primary);">UX principle:</strong> One goal doesn't require one path. Stripe allows users to choose based on their technical capability and business requirements.
+              </p>
+              <!-- Image: Developer section or embedded finance UI -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Lines of code on a dark screen, representing developer tools and APIs" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">Stripe demonstrates product capabilities in context for developers and SaaS platforms</span>
+              </div>
+            </div>
+
+            <!-- ===== JOURNEY ===== -->
+            <div id="journey" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The Storytelling Architecture I Found</h2>
+              <p class="body-base text-secondary" style="margin-bottom:20px;">
+                When I mapped the homepage, I found this underlying structure:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                <!-- architecture flow list unchanged -->
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">POSITION</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">This is what Stripe represents.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">EXPLAIN</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">This is what Stripe enables.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">PROVE</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Here is our scale and reliability.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">SEGMENT</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Enterprise / Startup / Platform / Developer</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">PERSONALIZE</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Here's why Stripe matters specifically to you.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">VALIDATE</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Here are companies like you already using it.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">REDUCE RISK</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Support / reliability / integrations / scalability.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:var(--accent); min-width:90px;">ENABLE</span>
+                  <span style="font-size:0.9rem; color:var(--text-secondary);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:var(--text-primary); margin:0;">Here are different ways to implement Stripe.</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; padding:10px 18px; background:var(--accent); border-radius:8px;">
+                  <span style="font-weight:800; font-size:0.85rem; color:#fff; min-width:90px;">CONVERT</span>
+                  <span style="font-size:0.9rem; color:rgba(255,255,255,0.7);">↓</span>
+                  <p style="font-weight:500; font-size:0.95rem; color:#fff; margin:0;">Sales / Pricing / Start building.</p>
+                </div>
+              </div>
+              <!-- Image: Storytelling architecture diagram -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" alt="Abstract business flowchart representing storytelling architecture" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">The underlying storytelling architecture of Stripe's homepage</span>
+              </div>
+            </div>
+
+            <!-- ===== USER FLOW ===== -->
+            <div id="userflow" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">A Pattern Repeated Across the Homepage</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                One of the strongest patterns I observed was:
+              </p>
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px); margin-bottom:16px; text-align:center;">
+                <p style="font-size:1.3rem; font-weight:700; color:var(--accent); margin:0;">Claim → Proof → Action</p>
+              </div>
+              <p class="body-base text-secondary" style="margin-bottom:12px;">
+                Stripe frequently makes a claim, then provides proof, then gives the visitor a path forward:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:12px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); min-width:70px;">Claim</span>
+                  <span style="color:var(--text-tertiary);">→</span>
+                  <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">"Scale with confidence."</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); min-width:70px;">Proof</span>
+                  <span style="color:var(--text-tertiary);">→</span>
+                  <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">500m+ API requests/day</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:700; color:var(--accent); min-width:70px;">Action</span>
+                  <span style="color:var(--text-tertiary);">→</span>
+                  <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">A path forward for the visitor.</p>
+                </div>
+              </div>
+              <p class="body-base text-secondary" style="margin-top:12px;">
+                This pattern appears repeatedly in different forms throughout the homepage. It prevents the website from becoming a collection of unsupported marketing statements.
+              </p>
+              <!-- Image: Claim-Proof-Action visual -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" alt="Design thinking diagram and sticky notes, illustrating the Claim-Proof-Action pattern" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">The recurring Claim → Proof → Action pattern</span>
+              </div>
+            </div>
+
+            <!-- ===== IA ===== -->
+            <div id="ia" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Audience-Based Storytelling</h2>
+              <p class="body-base text-secondary" style="margin-bottom:20px;">
+                Another important finding was how Stripe changes its message depending on the audience. Stripe doesn't attempt to convince every user with the same argument.
+              </p>
+              <div style="overflow-x:auto; border-radius:16px; border:1px solid var(--border); background:var(--card-bg);">
+                <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+                  <!-- table unchanged -->
+                  <thead>
+                    <tr>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">Audience</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">Primary concern</th>
+                      <th style="padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-surface); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-tertiary);">Stripe's response</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Enterprise</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Reliability &amp; complexity</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Scale, Fortune 100 proof, services</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Startup</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Speed &amp; growth</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Easy infrastructure, startup examples</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">SaaS Platform</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Product expansion</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Embedded financial capabilities</td></tr>
+                    <tr><td style="padding:10px 14px; border-bottom:1px solid var(--border); font-weight:500;">Developer</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">Flexibility &amp; implementation</td><td style="padding:10px 14px; border-bottom:1px solid var(--border);">APIs, SDKs, docs, GitHub</td></tr>
+                    <tr><td style="padding:10px 14px; font-weight:500;">Technical leadership</td><td style="padding:10px 14px;">Performance</td><td style="padding:10px 14px;">Infrastructure metrics</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ===== SKETCHES ===== -->
+            <div id="sketches" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">How This Changed My Approach to Product Design</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                This study changed how I think about website structure. Before deciding what section should come next, I can ask:
+              </p>
+              <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px); margin-bottom:20px;">
+                <p style="font-size:1.15rem; font-weight:600; color:var(--text-primary); text-align:center; margin:0;">
+                  "What question is the user likely asking at this point?"
+                </p>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+                <!-- questions sequence unchanged -->
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; color:var(--accent); min-width:24px;">1</span>
+                  <div>
+                    <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">If I just introduced a service</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:2px 0 0 0;">→ Why should I care?</p>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; color:var(--accent); min-width:24px;">2</span>
+                  <div>
+                    <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">After explaining the benefit</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:2px 0 0 0;">→ Can I trust you?</p>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; color:var(--accent); min-width:24px;">3</span>
+                  <div>
+                    <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">After building trust</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:2px 0 0 0;">→ Does this work for someone like me?</p>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; color:var(--accent); min-width:24px;">4</span>
+                  <div>
+                    <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">After showing proof</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:2px 0 0 0;">→ How does it work?</p>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--bg-surface); border-radius:8px;">
+                  <span style="font-weight:800; color:var(--accent); min-width:24px;">5</span>
+                  <div>
+                    <p style="font-weight:500; font-size:0.9rem; color:var(--text-primary); margin:0;">After explaining how it works</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin:2px 0 0 0;">→ How do I start?</p>
+                  </div>
+                </div>
+              </div>
+              <p class="body-base text-secondary">
+                This changes website design from <strong style="color:var(--text-primary);">"What sections should I add?"</strong> to <strong style="color:var(--text-primary);">"What does the user need to understand next?"</strong>
+              </p>
+              <!-- Image: Thought process or framework diagram -->
+              <div class="project-hero-image-wrapper" style="margin-top:24px;">
+                <!-- REPLACED placeholder -->
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Team brainstorming with sticky notes, representing the new design framework" class="project-hero-img" loading="lazy" />
+                <span style="display:block; padding:10px 14px; font-weight:500; font-size:0.85rem; color:var(--text-tertiary);">A new framework for structuring product pages based on user questions</span>
+              </div>
+            </div>
+
+            <!-- ===== REFLECTION ===== -->
+            <div id="reflection" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">What Stripe Does Well &amp; What I Learned</h2>
+
+              <p style="font-weight:600; color:var(--text-primary); margin-bottom:12px;">The strongest aspects of the experience I identified:</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px;">
+                <!-- insight cards unchanged -->
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Audience segmentation</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Different users receive different value propositions.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Evidence-based messaging</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Important claims are supported by numbers or customer examples.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Progressive disclosure</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Complex information isn't presented all at once.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Contextual CTAs</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">CTAs change depending on what the user is currently evaluating.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Visual explanation</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Product visuals explain concepts that would otherwise require paragraphs.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Objection handling</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Anticipates questions about scale, implementation, reliability, support and pricing.</p>
+                </div>
+                <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:16px; grid-column:1/-1;">
+                  <span style="font-weight:700; color:var(--accent); font-size:0.85rem;">Social proof with outcomes</span>
+                  <p class="small text-secondary" style="margin:4px 0 0 0;">Customers are connected with what they achieved rather than appearing only as logos.</p>
+                </div>
+              </div>
+
+              <p style="font-weight:600; color:var(--text-primary); margin-bottom:12px;">The biggest lessons:</p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <!-- lessons unchanged -->
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-weight:800; font-size:1rem; color:var(--accent); min-width:24px;">1</span>
+                  <p style="font-size:0.92rem; color:var(--text-secondary); margin:0;"><strong style="color:var(--text-primary);">Information sequencing matters more than visual polish.</strong> A strong homepage doesn't need to explain everything immediately. It needs to answer the right question at the right moment.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-weight:800; font-size:1rem; color:var(--accent); min-width:24px;">2</span>
+                  <p style="font-size:0.92rem; color:var(--text-secondary); margin:0;"><strong style="color:var(--text-primary);">Progressive disclosure reduces cognitive load.</strong> Stripe moves visitors from Understanding → Relevance → Trust → Proof → Confidence → Action.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-weight:800; font-size:1rem; color:var(--accent); min-width:24px;">3</span>
+                  <p style="font-size:0.92rem; color:var(--text-secondary); margin:0;"><strong style="color:var(--text-primary);">Evidence beats adjectives.</strong> Instead of saying "we're global, reliable and scalable," Stripe provides numbers that allow users to reach that conclusion themselves.</p>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:14px; padding:12px 18px; background:var(--card-bg); border-radius:12px; border:1px solid var(--card-border);">
+                  <span style="font-weight:800; font-size:1rem; color:var(--accent); min-width:24px;">4</span>
+                  <p style="font-size:0.92rem; color:var(--text-secondary); margin:0;"><strong style="color:var(--text-primary);">Different audiences need different stories.</strong> Enterprise cares about reliability. Startups care about speed. Developers care about flexibility. Same product, different narrative.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== THANK YOU ===== -->
+            <div id="thankyou" class="project-content-section reveal" style="text-align:center; padding:40px 0 20px;">
+              <div style="max-width:640px; margin:0 auto;">
+                <h2 style="font-size:2rem; font-weight:700; margin-bottom:12px;">Final Takeaway</h2>
+                <div style="background:var(--accent); border:1px solid var(--card-border); border-radius:16px; padding:24px 28px; backdrop-filter:blur(8px); margin-bottom:24px;">
+                  <p style="font-size:1.2rem; font-weight:600; color:var(--text-primary); margin:0;">
+                    Stripe's homepage doesn't simply present products. It progressively removes the reasons a user might hesitate to adopt them.
+                  </p>
+                </div>
+                <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:24px;">
+                  This reverse engineering study gave me a framework for thinking about website structure — not as a collection of sections, but as a sequence of answers to the questions users are asking at each stage of their decision journey.
+                </p>
+                <p style="color:var(--text-secondary); font-size:2rem; margin-bottom:8px;">
+                  Thank you for reading.
+                </p>
+              </div>
+            </div>
+
+          </div><!-- /project-content-block -->
+        </div><!-- /project-layout -->
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="../work.html" class="small text-tertiary footer-link">Back to work</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT (loads your existing script.js)
+       ============================================================ -->
+  <script src="../script.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1BDRFHDY8E');
+  </script>
+</body>
+</html>

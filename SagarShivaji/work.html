@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sagar Shivaji · Selected Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="https://drive.google.com/file/d/1omRwBxiVvXAOk9VDr32E-N42kdvG65BI/view" target="_blank">Resume ↗</a>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="work/laundry-app.html">
+          <span class="command-item-left">Laundry App</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation — Floating Pill -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="https://drive.google.com/file/d/1omRwBxiVvXAOk9VDr32E-N42kdvG65BI/view" target="_blank">Resume ↗</a>
+        <div class="nav-divider"></div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SELECTED WORK CONTENT -->
+  <div class="page" id="page-work">
+    <main class="container">
+      <section class="page-section">
+        <h1 class="heading-1 reveal" style="margin-bottom:16px;">Selected Work</h1>
+        <p class="body-large reveal text-secondary" style="margin-bottom:64px; max-width:600px;">Case studies covering B2B SaaS dashboard design, developer tooling, and financial software systems.</p>
+        <div class="case-card" onclick="window.location.href='work/gymogram.html'">
+  <div class="case-card-content">
+    <div style="display:flex; gap:16px; margin-bottom:16px;">
+      <span class="caption accent-text font-semibold">Product Design · 2026</span>
+      <span class="caption text-tertiary">10 min read</span>
+    </div>
+    <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Gymogram — Social Fitness Platform</h3>
+    <p class="body-base" style="margin-bottom:20px;">
+      A fitness experience that combines personalized workouts, community engagement, and gamification to keep users motivated and consistent over the long term.
+    </p>
+    <div class="case-meta">
+      <span class="meta-tag">Fitness & Social</span>
+      <span class="meta-tag">Product Designer</span>
+      <span class="meta-tag">Gamification</span>
+      <span class="meta-tag">iOS Design</span>
+    </div>
+    <a href="work/gymogram.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+  </div>
+  <div class="case-image-wrapper">
+    <div class="case-image">
+      <img src="images/gymogram/hero.png" alt="Gymogram Fitness App" style="
+    filter: none;
+    opacity: 1;
+  ">
+    </div>
+  </div>
+</div>
+        <div class="case-card reveal" onclick="window.location.href='work/job-pulse.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:16px; margin-bottom:16px;">
+              <span class="caption accent-text font-semibold">Live App · 2026</span>
+              <span class="caption text-tertiary">Real-time</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Job Pulse · Alert Dashboard</h3>
+            <p class="body-base" style="margin-bottom:20px;">A real-time job aggregation dashboard scanning RSS feeds with customizable filters, a sleek dark UI, and automated alerts.</p>
+            <div class="case-meta" style="margin-bottom: 20px;">
+              <span class="meta-tag">Full-Stack Development</span>
+              <span class="meta-tag">UI/UX Design</span>
+            </div>
+            <div style="display:flex; gap:12px; margin-top:20px;">
+              <a href="https://job-pulse-toie.onrender.com/" class="btn btn-primary" target="_blank" onclick="event.stopPropagation();" style="padding: 8px 16px; font-size: 13px;">View Live App <span class="arrow">↗</span></a>
+              <a href="work/job-pulse.html" class="btn btn-secondary" onclick="event.stopPropagation();" style="padding: 8px 16px; font-size: 13px;">View Case Study <span class="arrow">→</span></a>
+            </div>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/Screenshot 2026-08-10 002041.png" alt="Job Pulse Alert Dashboard">
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card reveal" onclick="window.location.href='work/bench-sales.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:16px; margin-bottom:16px;">
+              <span class="caption accent-text font-semibold">Shipped · 2026</span>
+              <span class="caption text-tertiary">8 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">AI-Powered
+Bench Sales Platform</h3>
+            <p class="body-base" style="margin-bottom:20px;">Designed an AI-powered Bench Sales platform that simplifies consultant tracking, submission management, and recruiter decision-making for staffing teams.</p>
+            <div class="case-meta">
+              <span class="meta-tag">Staffing & Recruitment</span>
+              <span class="meta-tag">AI Product Designer</span>
+              <span class="meta-tag">under NDA</span>
+            </div>
+            <a href="work/bench-sales.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="images/benchsales.png" alt="Bench Sales platform" style="
+    filter: blur(8px);
+    opacity: 0.5;
+  ">
+            </div>
+          </div>
+        </div>
+<div class="case-card reveal" onclick="window.location.href='work/laundry-app.html'">
+  <div class="case-card-content">
+    <div style="display:flex; gap:16px; margin-bottom:16px;">
+      <span class="caption accent-text font-semibold">Concept · 2026</span>
+      <span class="caption text-tertiary">30 min read</span>
+    </div>
+    <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Laundry Service · UX Case Study</h3>
+    <p class="body-base" style="margin-bottom:20px;">End-to-end research and design for an on‑demand laundry app — addressing transparency, tracking, and simplicity.</p>
+    <div class="case-meta">
+      <span class="meta-tag">UX Research</span>
+      <span class="meta-tag">Product Design</span>
+    </div>
+    <a href="/work/laundry-app.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+  </div>
+  <div class="case-image-wrapper">
+    <div class="case-image">
+      <img src="./images/laundry app hero section.png" alt="Laundry service app concept">
+    </div>
+  </div>
+</div>
+
+
+<div class="case-card reveal" onclick="window.location.href='work/lead-generator.html'">
+          <div class="case-card-content">
+            <div style="display:flex; gap:16px; margin-bottom:16px;">
+              <span class="caption accent-text font-semibold"> shipped 2026</span>
+              <span class="caption text-tertiary">6 min read</span>
+            </div>
+            <h3 class="heading-3 font-semibold" style="margin-bottom:12px;">Lead Generator</h3>
+            <p class="body-base" style="margin-bottom:20px;">Designed a command-line interface directly in the browser for issue tracking.</p>
+            <div class="case-meta">
+              <span class="meta-tag">SaaS</span>
+              <span class="meta-tag">Staff Designer</span>
+              <span class="meta-tag">under NDA</span>
+            </div>
+            <a href="work/lead-generator.html" class="card-cta" onclick="event.stopPropagation();">View case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-image-wrapper">
+            <div class="case-image">
+              <img src="./images/lead generator.png" alt="Lead Generator" style="
+    filter: blur(8px);
+    opacity: 0.5;
+  ">
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/sagar-shivaji-090904262/" class="small text-tertiary footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/16AryGECHEM1JU1mLF3R2ddJpJOj73nwm/view?usp=sharing" class="small text-tertiary footer-lin" target="_blank" rel="noopener">Read.cv</a>
+          <a href="https://www.behance.net/sagarshivaji" class="small text-tertiary footer-link" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
