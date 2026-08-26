@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lead Generator Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../work.html">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="../index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="../work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="../about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="../research.html">
+          <span class="command-item-left"> Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="../work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="../work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="../work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="../work/laundry-app.html">
+          <span class="command-item-left">Laundry App</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation Bar -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='../index.html'">
+        
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CASE STUDY: LINEAR PALETTE -->
+  <div class="page" id="page-project-2">
+    <main class="project-container">
+      <section class="page-section">
+        <a href="../work.html" class="btn btn-ghost reveal" style="padding-left:0; margin-bottom:32px; font-weight: 500;">
+          <span style="margin-right: 8px;">←</span> Back to work
+        </a>
+        
+        <div class="reveal">
+          <span class="caption accent-text font-semibold"> shipped 2026</span>
+          <h1 class="heading-1 font-semibold" style="margin:16px 0; max-width:840px;">Lead Generator</h1>
+        </div>
+        
+        <div class="project-info-bar reveal">
+          <div class="project-info-item"><span class="small text-tertiary">Role</span><strong class="text-primary">Staff Designer</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Industry</span><strong class="text-primary">Developer SaaS</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Timeline</span><strong class="text-primary">4 months</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Reading time</span><strong class="text-primary">6 min</strong></div>
+        </div>
+
+        <div class="project-hero-image-wrapper reveal">
+          <img src="../images/lead generator.png" alt="Linear command palette" class="project-hero-img" style="
+    filter: blur(8px);
+    opacity: 0.5;
+  ">
+        </div>
+
+        <div class="project-layout">
+          <nav class="sticky-nav">
+            <a href="#overview2" class="active">Overview</a>
+            <a href="#problem2">Problem</a>
+            <a href="#design2">Design Details</a>
+            <a href="#results2">Results</a>
+          </nav>
+          
+          <div class="project-content-block">
+             <section class="nda-notice">
+  <div class="nda-label">
+    <span class="nda-icon">🔒</span>
+    <span>NDA Protected</span>
+  </div>
+
+  <h3>Confidentiality Notice</h3>
+
+  <p>
+    Some details of this project have been intentionally omitted or modified
+    to respect company confidentiality and NDA requirements.
+  </p>
+
+</section>
+            <div id="overview2" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Overview</h2>
+              <div class="project-section-grid">
+                <div class="project-summary-text">
+                  <p class="body-large text-primary" style="margin-bottom: 16px;">Lead Generator is an AI-powered enterprise platform designed to help sales and recruitment teams discover, qualify, and manage potential business leads from multiple data sources.</p>
+                  <p class="body-base text-secondary">The goal was to reduce manual lead research by centralizing lead discovery, AI-assisted qualification, and pipeline management into a single workflow.</p>
+                </div>
+                <div class="project-sidebar-stat">
+                  <div class="insight-stat font-bold">120ms</div>
+                  <p class="small text-secondary font-semibold">Maximum input response lag</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="problem2" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Problem</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Sales teams relied on multiple websites, spreadsheets, and CRM tools to identify and organize potential leads. Gathering company information, validating contacts, and tracking outreach required repetitive manual effort and resulted in fragmented workflows.
+              </p>
+              <p class="body-base text-secondary">
+                As lead volume increased, teams struggled to prioritize high-quality prospects, maintain accurate data, and collaborate efficiently across sales pipelines.
+            </div>
+
+            <div id="design2" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Design Details</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                The platform was designed around three core experiences:
+              </p>
+              <ul class="project-list" style="margin-bottom: 24px;">
+                <li><strong>AI Lead Discovery</strong>: Automatically identify and organize potential leads based on industry, location, company size, and business requirements.</li>
+                <li><strong>Lead Qualification</strong>: Surface relevant company information, contact details, and qualification insights to help sales teams prioritize opportunities.</li>
+                <li><strong>Pipeline Management</strong>: Provide a centralized dashboard for tracking lead status, assignments, outreach progress, and follow-up activities.</li>
+              </ul>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                This approach simplified lead management while enabling teams to focus on meaningful sales conversations instead of manual data collection.
+              </p>
+            </div>
+
+            <div id="results2" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Results</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+               After implementing the Lead Generator platform, sales teams reported significant improvements in lead management efficiency and data accuracy. The AI-assisted workflows reduced manual research time, allowing teams to focus on high-value interactions with prospects.
+              </p>
+              <div class="project-section-grid">
+                <div class="metric-result-card">
+                  <div class="insight-stat font-bold accent-text">1</div>
+                  <p class="small text-secondary font-medium">Unified Lead Management Workspace</p>
+                </div>
+                <div class="metric-result-card">
+                  <div class="insight-stat font-bold accent-text">AI</div>
+                  <p class="small text-secondary font-medium">Assisted Workflow</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="../work.html" class="small text-tertiary footer-link">Back to work</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../script.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1BDRFHDY8E');
+</script>
+</body>
+</html>

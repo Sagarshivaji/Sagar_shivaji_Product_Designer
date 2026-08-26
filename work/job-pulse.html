@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Job Notification - Real-time Job Alert Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../work.html">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../research.html">Research</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="../index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="../work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="../about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="../research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="../work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="../work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="../work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="../work/laundry-app.html">
+          <span class="command-item-left">Laundry App</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation Bar -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='../index.html'">
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CASE STUDY: Job Notification -->
+  <div class="page" id="page-project-job-pulse">
+    <main class="project-container">
+      <section class="page-section">
+        <a href="../work.html" class="btn btn-ghost reveal" style="padding-left:0; margin-bottom:32px; font-weight: 500;">
+          <span style="margin-right: 8px;">←</span> Back to work
+        </a>
+        
+        <div class="reveal">
+          <span class="caption accent-text font-semibold">Live App · 2026</span>
+          <h1 class="heading-1 font-semibold" style="margin:16px 0; max-width:840px;">Job Notification: Real-time Job Alert Dashboard</h1>
+        </div>
+        
+        <div class="project-info-bar reveal">
+          <div class="project-info-item"><span class="small text-tertiary">Role</span><strong class="text-primary">Full-Stack Developer & Designer</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Industry</span><strong class="text-primary">Job Search & Productivity</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Timeline</span><strong class="text-primary">1 week</strong></div>
+          <div class="project-info-item"><span class="small text-tertiary">Reading time</span><strong class="text-primary">5 min</strong></div>
+        </div>
+
+        <div class="project-hero-image-wrapper reveal">
+          <img src="../images/Screenshot 2026-08-10 002041.png" alt="Job Notification Dashboard" class="project-hero-img">
+        </div>
+
+        <div class="project-layout">
+          <nav class="sticky-nav">
+            <a href="#overview" class="active">Overview</a>
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#process">Process</a>
+            <a href="#results">Results</a>
+          </nav>
+          
+          <div class="project-content-block">
+            <div id="overview" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Overview</h2>
+              <div class="project-section-grid">
+                <div class="project-summary-text">
+                  <p class="body-large text-primary" style="margin-bottom: 16px;">Job Notification is an automated job search tool that polls developer job feeds and aggregates postings into a streamlined, customizable UI. Built using React, Node.js, and SQLite, it eliminates manual searching by delivering notifications instantly.</p>
+                  <p class="body-base text-secondary">Initially developed as a local tool, the system was fully deployed to Vercel, integrating serverless APIs, lightweight storage, and notification channels like Telegram and Discord.</p>
+                  <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="https://job-pulse-toie.onrender.com/" target="_blank" class="btn" style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--accent);color: var(--text-on-accent);padding: 8px 16px; font-size: 13px;">
+                      Open Live App <span class="material-symbols-outlined" style="font-size: 1.1em; margin: 0;">open_in_new</span>
+                    </a>
+                    <a href="mailto:sagarshivaji6644@gmail.com" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;padding: 8px 16px; font-size: 13px;">
+                      Email Me <span class="material-symbols-outlined" style="font-size: 1.1em; margin: 0;">mail</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="project-sidebar-stat">
+                  <div class="insight-stat font-bold">1 hr</div>
+                  <p class="small text-secondary font-semibold">Maximum Notification Delay</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="problem" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The Problem</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Checking multiple job portals, forums (like Upwork or Web3 RSS feeds), and boards daily is incredibly time-consuming. Job postings often close quickly, meaning candidates who apply within the first few hours stand the highest chance of success.
+              </p>
+              <p class="body-base text-secondary">
+                Typical job alerts are either too slow (daily digests) or lack granular filtering (by keywords, location, or source platform), resulting in inbox clutter and missed opportunities.
+              </p>
+            </div>
+
+            <div id="solution" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">The Solution</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                I built a personalized full-stack system that constantly scans job channels and formats them beautifully:
+              </p>
+              <ul class="project-list" style="margin-bottom: 24px;">
+                <li><strong>Automatic Scanning</strong>: Periodically pulls job posts via RSS and parses them on a serverless scheduler.</li>
+                <li><strong>Dynamic Search & Filters</strong>: Filter by keywords, location, source platform, and date, or toggle custom categories instantly.</li>
+                <li><strong>Instant Actions</strong>: Delete unwanted cards, toggle "Applied" status, or perform a manual job sync with a single click.</li>
+                <li><strong>Zero-Loss Settings</strong>: Settings are persisted locally and synced with the backend to ensure zero configuration loss on page refresh.</li>
+              </ul>
+            </div>
+
+            <div id="process" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Process & Technical Execution</h2>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Building for production on Vercel presented unique architectural challenges compared to local environments:
+              </p>
+              <h3 class="heading-3 font-semibold" style="margin-bottom:12px; margin-top:20px;">1. Serverless Life Cycle Management</h3>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                Vercel Serverless Functions tear down execution contexts as soon as an API response is sent. A background scraper function would get killed prematurely. I rewrote the scraper trigger API to sequentially `await` the RSS parsing loop before returning a response, ensuring 100% processing completion.
+              </p>
+              <h3 class="heading-3 font-semibold" style="margin-bottom:12px; margin-top:20px;">2. Lightweight Storage Integration</h3>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                A local SQLite database was ported to work efficiently inside serverless handlers, managing schema initialization automatically on cold starts and ensuring zero loss of user credentials and filters.
+              </p>
+              <h3 class="heading-3 font-semibold" style="margin-bottom:12px; margin-top:20px;">3. Minimalist UX Iterations</h3>
+              <p class="body-base text-secondary" style="margin-bottom:16px;">
+                The UI was redesigned to move away from distracting multi-color gradients and complex emojis. Instead, a sleek, flat dark theme using solid purple (`#a855f7`) accents and Google Material Symbols was implemented to prioritize reading clarity and efficiency.
+              </p>
+            </div>
+
+            <div id="results" class="project-content-section reveal">
+              <h2 class="heading-2 font-semibold" style="margin-bottom:16px;">Results</h2>
+              <p class="body-base text-secondary" style="margin-bottom:24px;">
+                The deployed app runs continuously, delivering alerts, maintaining state, and helping track job applications systematically.
+              </p>
+              <div class="project-section-grid">
+                <div class="metric-result-card">
+                  <div class="insight-stat font-bold accent-text">100%</div>
+                  <p class="small text-secondary font-medium">Automatic Processing Completion</p>
+                </div>
+                <div class="metric-result-card">
+                  <div class="insight-stat font-bold accent-text">&lt; 1s</div>
+                  <p class="small text-secondary font-medium">Instant Filter Latency</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="../work.html" class="small text-tertiary footer-link">Back to work</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../script.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1BDRFHDY8E');
+  </script>
+</body>
+</html>

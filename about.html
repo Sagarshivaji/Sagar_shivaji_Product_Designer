@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sagar Shivaji · About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style> /* ── Design Profile Section ── */
+.design-profile-section {
+  padding: 60px 0 50px;
+  position: relative;
+  z-index: 1;
+}
+.design-profile-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.design-profile-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FF6B35; /* accent */
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.design-profile-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.design-profile-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  max-width: 440px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Chart wrapper */
+.radar-chart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+.radar-chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
+}
+.radar-chart-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* SVG element styles */
+.radar-grid-polygon {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 1;
+}
+[data-theme="light"] .radar-grid-polygon {
+  stroke: rgba(0, 0, 0, 0.06);
+}
+.radar-axis-line {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+  transition: stroke 200ms ease;
+}
+[data-theme="light"] .radar-axis-line {
+  stroke: rgba(0, 0, 0, 0.08);
+}
+.radar-axis-line.highlighted {
+  stroke: #FF6B35;
+  stroke-width: 1.5;
+  stroke-opacity: 0.8;
+}
+.radar-data-polygon {
+  fill: rgba(255, 107, 53, 0.1);
+  stroke: rgba(255, 107, 53, 0.65);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: all 350ms ease;
+  transform-origin: 250px 250px;
+  filter: url(#radarGlow);
+}
+[data-theme="light"] .radar-data-polygon {
+  fill: rgba(255, 107, 53, 0.12);
+  stroke: rgba(255, 107, 53, 0.7);
+}
+.radar-data-dot {
+  fill: #FF6B35;
+  stroke: var(--bg-primary);
+  stroke-width: 1;
+  transition: all 200ms ease;
+  cursor: pointer;
+  filter: drop-shadow(0 0 4px rgba(255, 107, 53, 0.5));
+}
+.radar-data-dot:hover {
+  r: 7;
+  filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.8));
+}
+.radar-data-dot.dimmed {
+  opacity: 0.3;
+  filter: none;
+}
+.radar-hit-area {
+  fill: transparent;
+  cursor: pointer;
+  r: 18;
+}
+.radar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  fill: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 200ms ease;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+.radar-label:hover {
+  fill: var(--text-primary);
+}
+.radar-label.highlighted {
+  fill: #FF6B35;
+  font-weight: 600;
+}
+.radar-label.dimmed {
+  opacity: 0.3;
+}
+
+/* Tooltip */
+.radar-tooltip {
+  position: fixed;
+  z-index: 500;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  background: #141417;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 18px 20px;
+  min-width: 240px;
+  max-width: 300px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+[data-theme="light"] .radar-tooltip {
+  background: #fcfcfd;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+.radar-tooltip.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.radar-tooltip-skill-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  letter-spacing: -0.02em;
+}
+.radar-tooltip-score {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FF6B35;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.radar-tooltip-score span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+.radar-tooltip-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.radar-tooltip-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.radar-tooltip-achievements li {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  border: 1px solid var(--border-subtle);
+}
+.radar-tooltip-arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #141417;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  transform: rotate(45deg);
+}
+[data-theme="light"] .radar-tooltip-arrow {
+  background: #fcfcfd;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .design-profile-section {
+    padding: 40px 0 30px;
+  }
+  .design-profile-title {
+    font-size: 1.6rem;
+  }
+  .design-profile-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 32px;
+    max-width: 340px;
+  }
+  .radar-chart-container {
+    max-width: 340px;
+  }
+  .radar-label {
+    font-size: 9px;
+  }
+  .radar-tooltip {
+    min-width: 200px;
+    max-width: 260px;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+  .radar-tooltip-score {
+    font-size: 1.6rem;
+  }
+  .radar-tooltip-skill-name {
+    font-size: 0.9rem;
+  }
+  .radar-tooltip-achievements li {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+}
+@media (max-width: 420px) {
+  .design-profile-section {
+    padding: 32px 0 24px;
+  }
+  .design-profile-title {
+    font-size: 1.4rem;
+  }
+  .design-profile-subtitle {
+    font-size: 0.78rem;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+  .radar-chart-container {
+    max-width: 290px;
+  }
+  .radar-label {
+    font-size: 8px;
+  }
+  .radar-tooltip {
+    min-width: 180px;
+    max-width: 230px;
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+  .radar-tooltip-score {
+    font-size: 1.4rem;
+  }
+  .radar-tooltip-skill-name {
+    font-size: 0.82rem;
+  }
+  .radar-tooltip-desc {
+    font-size: 0.7rem;
+  }
+  .radar-tooltip-achievements li {
+    font-size: 0.6rem;
+    padding: 2px 7px;
+  }
+}</style>
+</head>
+<body>
+  <!-- Custom Glow Backgrounds -->
+  <div class="glow-bg glow-bg-1"></div>
+  <div class="glow-bg glow-bg-2"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="progressBar"></div>
+
+  <!-- Mobile Menu Overlay & Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume</a>
+    <div class="mobile-theme-section">
+      <span class="small font-medium">Theme</span>
+      <div class="theme-toggle" id="themeToggleMobile" title="Toggle theme">
+        <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+        <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette (⌘K) -->
+  <div class="command-overlay" id="commandOverlay">
+    <div class="command-panel">
+      <div class="command-search-wrapper">
+        <input type="text" class="command-search" placeholder="Search pages, case studies, research..." id="commandInput" autocomplete="off" autofocus>
+        <div class="command-esc">ESC</div>
+      </div>
+      <div class="command-results" id="commandResults">
+        <div class="command-group-title">Pages</div>
+        <div class="command-item" data-action="index.html">
+          <span class="command-item-left">Home</span>
+          <span class="command-shortcut">⌘H</span>
+        </div>
+        <div class="command-item" data-action="work.html">
+          <span class="command-item-left">Work</span>
+          <span class="command-shortcut">⌘W</span>
+        </div>
+        <div class="command-item" data-action="about.html">
+          <span class="command-item-left">About</span>
+          <span class="command-shortcut">⌘A</span>
+        </div>
+        <div class="command-item" data-action="research.html">
+          <span class="command-item-left">Research</span>
+          <span class="command-shortcut">⌘R</span>
+        </div>
+
+        <div class="command-group-title">Case Studies</div>
+        <div class="command-item" data-action="work/job-pulse.html">
+          <span class="command-item-left">Job Pulse Alert Dashboard</span>
+          <span class="command-shortcut">1</span>
+        </div>
+        <div class="command-item" data-action="work/bench-sales.html">
+          <span class="command-item-left">Bench Sales Platform</span>
+          <span class="command-shortcut">2</span>
+        </div>
+        <div class="command-item" data-action="work/lead-generator.html">
+          <span class="command-item-left">Lead Generator</span>
+          <span class="command-shortcut">3</span>
+        </div>
+        <div class="command-item" data-action="work/laundry-app.html">
+          <span class="command-item-left"> Laundry App</span>
+          <span class="command-shortcut">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation Bar -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+    
+        <span class="logo-text">Sagar Shivaji</span>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" target="_blank">Resume</a>
+        <div class="nav-divider"></div>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <button class="theme-toggle-btn" data-theme="light" aria-label="Light mode">☀</button>
+          <button class="theme-toggle-btn active" data-theme="dark" aria-label="Dark mode">☾</button>
+        </div>
+        <span class="command-badge" onclick="openCommand()" title="Open Command Palette (⌘K)">⌘K</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ABOUT CONTENT -->
+  <div class="page" id="page-about">
+    <main class="container">
+      <section class="page-section">
+        <div class="reading-width">
+          <h1 class="heading-1 reveal" style="margin-bottom:40px;">About</h1>
+          <div class="portrait-container reveal" style="width:250px; height: 300px; margin-bottom:48px; ">
+            <div class="portrait-glow"></div>
+            <div class="portrait" style="width:90%; height: 100%; border-radius: 24px; overflow:hidden;">
+              <img src="images/my image.jpg" alt="Sagar portrait">
+            </div>
+          </div>
+          <p class="body-large reveal text-primary" style="margin-bottom:32px; font-weight:500;">I am Sagar Shivaji, an AI Product Designer based in Hyderabad, India. I specialize in complex B2B platforms, design systems, and workflow automation.</p>
+          <p class="body-base reveal text-secondary" style="margin-bottom:24px;">With a background in Computer Science specializing in Artificial Intelligence, I bridge the gap between design and technology. I enjoy designing AI-powered products, building scalable design systems, and creating workflows that make enterprise software more efficient, accessible, and easier to use.</p>
+          
+          <div class="divider reveal"></div>
+          
+          <h2 class="heading-3 reveal font-semibold" style="margin-bottom:24px;">Core Capabilities</h2>
+          <div class="reveal capabilities-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:48px;">
+            <div class="capability-item"><span class="bullet">✦</span> Product Strategy</div>
+            <div class="capability-item"><span class="bullet">✦</span> User Experience & Research</div>
+            <div class="capability-item"><span class="bullet">✦</span> Complex Design Systems</div>
+            <div class="capability-item"><span class="bullet">✦</span> Web Accessibility (WCAG 2.2)</div>
+            <div class="capability-item"><span class="bullet">✦</span> Interactive Prototyping</div>
+            <div class="capability-item"><span class="bullet">✦</span> LLM & AI workflow mapping</div>
+            <div class="capability-item"><span class="bullet">✦</span> Information Architecture</div>
+          </div>
+          <!-- ═══════════════════════════════════════
+     DESIGN PROFILE – RADAR CHART SECTION
+     ═══════════════════════════════════════ -->
+<section class="design-profile-section reveal" id="designProfileSection">
+  <div class="design-profile-inner">
+    <span class="design-profile-label">Design Profile</span>
+    <h2 class="design-profile-title">Design Profile</h2>
+    <p class="design-profile-subtitle">
+      A visual overview of my core product design capabilities developed through real-world projects.
+    </p>
+
+    <div class="radar-chart-wrapper">
+      <div class="radar-chart-container" id="radarChartContainer">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" id="radarSvg">
+          <defs>
+            <filter id="radarGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="dotGlow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="1.8" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Grid polygons (generated by JS) -->
+          <g id="gridGroup"></g>
+          <!-- Axis lines (generated by JS) -->
+          <g id="axisGroup"></g>
+          <!-- Data polygon -->
+          <polygon
+            id="dataPolygon"
+            class="radar-data-polygon"
+            points=""
+            style="transform: scale(0); transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);"
+          />
+          <!-- Data dots (generated by JS) -->
+          <g id="dataDotsGroup"></g>
+          <!-- Hit areas (generated by JS) -->
+          <g id="hitAreasGroup"></g>
+          <!-- Labels (generated by JS) -->
+          <g id="labelsGroup"></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tooltip (positioned fixed, outside the chart) -->
+<div class="radar-tooltip" id="radarTooltip">
+  <div class="radar-tooltip-arrow" id="radarTooltipArrow"></div>
+  <div class="radar-tooltip-skill-name" id="tooltipSkillName"></div>
+  <div class="radar-tooltip-score" id="tooltipScore"></div>
+  <div class="radar-tooltip-desc" id="tooltipDesc"></div>
+  <ul class="radar-tooltip-achievements" id="tooltipAchievements"></ul>
+</div>
+          
+          <div class="divider reveal"></div>
+          
+          <h2 class="heading-3 reveal font-semibold" style="margin-bottom:24px;">Professional History</h2>
+          <div class="timeline-item reveal" style="margin-bottom:32px;">
+            <div class="timeline-header">
+              <h4 class="font-semibold text-primary">AI Product Designer · Vensiti Inc.</h4>
+              <span class="timeline-date small font-semibold">Mar 2026 – Present</span>
+            </div>
+            <p class="small text-secondary" style="margin-top: 4px;">Designing enterprise SaaS products focused on staffing and recruitment. Leading the design of AI-powered platforms including Bench Sales, Lead Generator, Job Pipeline, and Resume Formatter while collaborating closely with product managers, developers, and business stakeholders.</p>
+          </div>
+          <div class="timeline-item reveal" style="margin-bottom:32px;">
+            <div class="timeline-header">
+              <h4 class="font-semibold text-primary">AI Product Design Intern · Techgene Solutions</h4>
+              <span class="timeline-date small font-semibold">Dec 2025 – Feb 2026</span>
+            </div>
+            <p class="small text-secondary" style="margin-top: 4px;">Designed internal enterprise applications and workflow automation tools, contributing to user research, wireframing, high-fidelity interfaces, design systems, and interactive prototypes for AI-driven products.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-header">
+              <h4 class="font-semibold text-primary">UX Design Intern · Brain Quest</h4>
+              <span class="timeline-date small font-semibold">May 2025 – Jun 2025</span>
+            </div>
+            <p class="small text-secondary" style="margin-top: 4px;">Designed responsive user interfaces with a strong focus on usability and accessibility. Collaborated with the design team to create wireframes, iterate on high-fidelity designs, and improve user experiences through feedback and design reviews.</p>
+          </div>
+
+          <h2 class="heading-3 reveal font-semibold" style="margin-bottom:24px; margin-top: 40px;">Education</h2>
+          <div class="timeline-item reveal">
+            <div class="timeline-header">
+              <h4 class="font-semibold text-primary">B.Tech — Computer Science (Artificial Intelligence & Machine Learning)</h4>
+              <span class="timeline-date small font-semibold">Nov 2021 – Aug 2025</span>
+            </div>
+            <p class="small text-secondary" style="margin-top: 4px;">Specialized in Artificial Intelligence and Machine Learning while building projects in AI, computer vision, and product design. Developed a strong foundation in human-centered design, frontend development, and AI-powered digital experiences.</p>
+          </div>
+        </div>
+      </section>
+      <section class="sketchbook-section" >
+       <div class="sketchbook-header">
+    <span class="section-label">BEYOND THE SCREEN</span>
+
+    <h2>Drawing taught me to observe.</h2>
+
+    <p>
+      Before I started designing digital products, drawing was one of the ways I explored ideas and understood the world around me.
+    </p>
+
+    <p>
+      I enjoy sketching portraits, objects, and things that catch my attention. It has trained me to notice proportions, details,
+      composition, and small visual relationships ,skills that naturally influence the way I approach product design today.
+    </p>
+  </div>
+
+  <div class="sketch-grid">
+
+    <!-- Featured drawing -->
+    <figure class="sketch sketch-featured">
+      <img src="Sketches/Buddha.jpeg" alt="Portrait drawing by Sagar Shivaji">
+      <figcaption>Buddha</figcaption>
+    </figure>
+
+    <figure class="sketch">
+      <img src="Sketches/love.jpeg" alt="Observational sketch by Sagar Shivaji">
+      <figcaption>Love</figcaption>
+    </figure>
+
+    <figure class="sketch">
+      <img src="Sketches/toy.jpeg" alt="Concept sketch by Sagar Shivaji">
+      <figcaption>Exploration</figcaption>
+    </figure>
+
+    <figure class="sketch">
+      <img src="Sketches/bird.jpeg" alt="Sketchbook drawing by Sagar Shivaji">
+      <figcaption>Bird</figcaption>
+    </figure>
+
+    <figure class="sketch">
+      <img src="Sketches/Hand.jpeg" alt="Detailed pencil artwork by Sagar Shivaji">
+      <figcaption>Hand</figcaption>
+    </figure>
+    <figure class="sketch">
+      <img src="Sketches/loki.jpeg" alt="Detailed pencil artwork by Sagar Shivaji">
+      <figcaption>Loki</figcaption>
+    </figure>
+    <figure class="sketch">
+      <img src="Sketches/zoro.jpeg" alt="Detailed pencil artwork by Sagar Shivaji">
+      <figcaption>Zoro</figcaption>
+    </figure>
+    <figure class="sketch">
+      <img src="Sketches/venom.jpeg" alt="Detailed pencil artwork by Sagar Shivaji">
+      <figcaption>Venom</figcaption>
+    </figure>
+
+  </div>
+
+  <div class="sketchbook-footer">
+    <p>
+      For me, drawing isn't about creating something perfect.
+      It's about slowing down enough to notice what others might miss.
+    </p>
+  </div>
+</section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="small text-tertiary">© Sagar Shivaji 2026</span>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/sagar-shivaji-090904262/" class="small text-tertiary footer-link" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1BDUu_gcDBcaZTLKatYkmeckvLk0Y8uly/view?usp=sharing" class="small text-tertiary footer-lin" target="_blank" rel="noopener">Read.cv</a>
+          <a href="https://www.behance.net/sagarshivaji" class="small text-tertiary footer-link" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BDRFHDY8E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1BDRFHDY8E');
+</script>
+<script>// ═══════════════════════════════════════
+// RADAR CHART INITIALIZATION
+// ═══════════════════════════════════════
+function initRadarChart() {
+  const svg = document.getElementById('radarSvg');
+  const gridGroup = document.getElementById('gridGroup');
+  const axisGroup = document.getElementById('axisGroup');
+  const dataPolygon = document.getElementById('dataPolygon');
+  const dataDotsGroup = document.getElementById('dataDotsGroup');
+  const hitAreasGroup = document.getElementById('hitAreasGroup');
+  const labelsGroup = document.getElementById('labelsGroup');
+  const tooltip = document.getElementById('radarTooltip');
+  const tooltipArrow = document.getElementById('radarTooltipArrow');
+  const tooltipSkillName = document.getElementById('tooltipSkillName');
+  const tooltipScore = document.getElementById('tooltipScore');
+  const tooltipDesc = document.getElementById('tooltipDesc');
+  const tooltipAchievements = document.getElementById('tooltipAchievements');
+  const designProfileSection = document.getElementById('designProfileSection');
+
+  const cx = 250;
+  const cy = 250;
+  const chartRadius = 160;
+  const labelRadius = 190;
+  const gridLevels = [0.2, 0.4, 0.6, 0.8, 1.0];
+
+  // Competency data (ordered clockwise from top)
+  const competencies = [
+    {
+      name: 'Product Thinking',
+      score: 88,
+      description: 'Strategic product vision, roadmap planning, and feature prioritization.',
+      achievements: ['Feature Prioritization', 'User Story Mapping', 'Market Analysis', 'Stakeholder Alignment', 'Product Strategy Workshops', 'OKR-Driven Design']
+    },
+    {
+      name: 'UX Research',
+      score: 84,
+      description: 'User-centered research methodologies and insight synthesis.',
+      achievements: ['User Interviews', 'Usability Testing', 'Competitive Analysis', 'Persona Development', 'Journey Mapping', 'Affinity Diagramming']
+    },
+    {
+      name: 'Visual Design',
+      score: 90,
+      description: 'Crafting polished, cohesive visual experiences with meticulous detail.',
+      achievements: ['UI Design', 'Typography Systems', 'Color Theory', 'Iconography', 'Micro-Interactions', 'Responsive Layouts']
+    },
+    {
+      name: 'Interaction Design',
+      score: 91,
+      description: 'Designing intuitive, delightful interactions and micro-moments.',
+      achievements: ['Micro-Interactions', 'Gesture Design', 'Animation Curves', 'State Management', 'User Flows', 'Haptic Feedback']
+    },
+    {
+      name: 'Design Systems',
+      score: 94,
+      description: 'Building scalable, consistent design frameworks across products.',
+      achievements: ['Components', 'Variables', 'Tokens', 'Auto Layout', 'Scalable UI Libraries', 'Documentation']
+    },
+    {
+      name: 'Prototyping',
+      score: 92,
+      description: 'High-fidelity interactive prototypes for rapid validation.',
+      achievements: ['Interactive Prototypes', 'Conditional Logic', 'Variables & Expressions', 'User Testing', 'Rapid Iteration', 'Figma Advanced']
+    },
+    {
+      name: 'Developer Handoff',
+      score: 95,
+      description: 'Seamless design-to-development collaboration and specification.',
+      achievements: ['Design Tokens', 'Auto Layout', 'Dev Mode', 'Component Documentation', 'React Developer Collaboration', 'Production Projects']
+    },
+    {
+      name: 'AI Workflow Design',
+      score: 90,
+      description: 'Designing AI-powered product experiences and intelligent workflows.',
+      achievements: ['LLM Integration', 'Prompt Engineering', 'AI UX Patterns', 'Conversational UI', 'Trust & Transparency', 'Feedback Loops']
+    }
+  ];
+
+  const numAxes = competencies.length;
+  const angleStep = (2 * Math.PI) / numAxes;
+  const startAngle = -Math.PI / 2; // top
+
+  // Helper: get point on chart
+  function getPoint(angle, radius) {
+    return {
+      x: cx + radius * Math.cos(angle),
+      y: cy + radius * Math.sin(angle)
+    };
+  }
+
+  function getAngle(index) {
+    return startAngle + index * angleStep;
+  }
+
+  // ── Draw grid octagons ──
+  gridLevels.forEach(level => {
+    const r = chartRadius * level;
+    const points = [];
+    for (let i = 0; i < numAxes; i++) {
+      const angle = getAngle(i);
+      const pt = getPoint(angle, r);
+      points.push(`${pt.x},${pt.y}`);
+    }
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', points.join(' '));
+    polygon.setAttribute('class', 'radar-grid-polygon');
+    if (level === 1.0) polygon.setAttribute('stroke-opacity', '0.14');
+    gridGroup.appendChild(polygon);
+  });
+
+  // ── Draw axis lines ──
+  const axisLines = [];
+  for (let i = 0; i < numAxes; i++) {
+    const angle = getAngle(i);
+    const outerPt = getPoint(angle, chartRadius);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', outerPt.x);
+    line.setAttribute('y2', outerPt.y);
+    line.setAttribute('class', 'radar-axis-line');
+    line.dataset.axisIndex = i;
+    axisGroup.appendChild(line);
+    axisLines.push(line);
+  }
+
+  // ── Calculate data polygon points ──
+  const dataPoints = [];
+  for (let i = 0; i < numAxes; i++) {
+    const angle = getAngle(i);
+    const score = competencies[i].score;
+    const r = (score / 100) * chartRadius;
+    const pt = getPoint(angle, r);
+    dataPoints.push({ x: pt.x, y: pt.y, score, angle, index: i });
+  }
+  const polygonPointsStr = dataPoints.map(p => `${p.x},${p.y}`).join(' ');
+  dataPolygon.setAttribute('points', polygonPointsStr);
+
+  // ── Draw data dots ──
+  const dots = [];
+  dataPoints.forEach((dp, i) => {
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', dp.x);
+    dot.setAttribute('cy', dp.y);
+    dot.setAttribute('r', '5');
+    dot.setAttribute('class', 'radar-data-dot');
+    dot.setAttribute('filter', 'url(#dotGlow)');
+    dot.dataset.axisIndex = i;
+    dataDotsGroup.appendChild(dot);
+    dots.push(dot);
+
+    // Larger invisible hit area
+    const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    hitArea.setAttribute('cx', dp.x);
+    hitArea.setAttribute('cy', dp.y);
+    hitArea.setAttribute('r', '18');
+    hitArea.setAttribute('class', 'radar-hit-area');
+    hitArea.dataset.axisIndex = i;
+    hitAreasGroup.appendChild(hitArea);
+  });
+
+  // ── Draw labels ──
+  const labelEls = [];
+  for (let i = 0; i < numAxes; i++) {
+    const angle = getAngle(i);
+    const pt = getPoint(angle, labelRadius);
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', pt.x);
+    label.setAttribute('y', pt.y);
+    label.setAttribute('class', 'radar-label');
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('dominant-baseline', 'central');
+    label.dataset.axisIndex = i;
+
+    const deg = ((angle * 180) / Math.PI + 360) % 360;
+    if (deg > 300 || deg < 60) {
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('dy', '-0.4em');
+    } else if (deg >= 60 && deg < 130) {
+      label.setAttribute('text-anchor', 'start');
+      label.setAttribute('dx', '0.6em');
+    } else if (deg >= 130 && deg < 230) {
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('dy', '1.2em');
+    } else if (deg >= 230 && deg <= 300) {
+      label.setAttribute('text-anchor', 'end');
+      label.setAttribute('dx', '-0.6em');
+    }
+
+    label.textContent = competencies[i].name;
+    labelsGroup.appendChild(label);
+    labelEls.push(label);
+  }
+
+  // ── Interaction state ──
+  let activeAxisIndex = -1;
+  let tooltipTimeout = null;
+
+  function highlightAxis(index) {
+    if (activeAxisIndex === index) return;
+    activeAxisIndex = index;
+
+    axisLines.forEach((line, i) => line.classList.toggle('highlighted', i === index));
+    labelEls.forEach((lbl, i) => {
+      lbl.classList.toggle('highlighted', i === index);
+      lbl.classList.toggle('dimmed', i !== index);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('dimmed', i !== index);
+      dot.setAttribute('r', i === index ? '7' : '5');
+    });
+  }
+
+  function clearHighlight() {
+    activeAxisIndex = -1;
+    axisLines.forEach(line => line.classList.remove('highlighted'));
+    labelEls.forEach(lbl => lbl.classList.remove('highlighted', 'dimmed'));
+    dots.forEach(dot => {
+      dot.classList.remove('dimmed');
+      dot.setAttribute('r', '5');
+    });
+  }
+
+  function showTooltip(index, event) {
+    const comp = competencies[index];
+    tooltipSkillName.textContent = comp.name;
+    tooltipScore.innerHTML = `${comp.score}<span>/100</span>`;
+    tooltipDesc.textContent = comp.description;
+    tooltipAchievements.innerHTML = comp.achievements.map(a => `<li>${a}</li>`).join('');
+
+    tooltip.classList.add('active');
+    positionTooltip(event, index);
+  }
+
+  function positionTooltip(event, index) {
+    const tooltipRect = tooltip.getBoundingClientRect();
+    let left = event.clientX + 20;
+    let top = event.clientY - tooltipRect.height / 2;
+
+    const viewportW = window.innerWidth;
+    const viewportH = window.innerHeight;
+    if (left + tooltipRect.width > viewportW - 16) left = event.clientX - tooltipRect.width - 20;
+    if (left < 16) left = 16;
+    if (top < 16) top = 16;
+    if (top + tooltipRect.height > viewportH - 16) top = viewportH - tooltipRect.height - 16;
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+
+    const arrowX = event.clientX - left;
+    const arrowY = event.clientY - top;
+    tooltipArrow.style.left = Math.max(8, Math.min(arrowX, tooltipRect.width - 18)) + 'px';
+    tooltipArrow.style.top = Math.max(8, Math.min(arrowY, tooltipRect.height - 18)) + 'px';
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove('active');
+  }
+
+  // ── Event listeners ──
+  const allInteractive = [...dots, ...labelEls, ...Array.from(hitAreasGroup.children)];
+
+  allInteractive.forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const index = parseInt(this.dataset.axisIndex);
+      if (isNaN(index)) return;
+      highlightAxis(index);
+      showTooltip(index, e);
+      if (tooltipTimeout) clearTimeout(tooltipTimeout);
+    });
+
+    el.addEventListener('mousemove', function(e) {
+      const index = parseInt(this.dataset.axisIndex);
+      if (isNaN(index) || activeAxisIndex !== index) return;
+      positionTooltip(e, index);
+    });
+
+    el.addEventListener('mouseleave', function() {
+      tooltipTimeout = setTimeout(() => {
+        clearHighlight();
+        hideTooltip();
+      }, 180);
+    });
+
+    // Touch support
+    el.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      const index = parseInt(this.dataset.axisIndex);
+      if (isNaN(index)) return;
+      if (activeAxisIndex === index) {
+        clearHighlight();
+        hideTooltip();
+        return;
+      }
+      highlightAxis(index);
+      showTooltip(index, e.touches[0]);
+    });
+  });
+
+  // Keep tooltip visible when hovering over it
+  tooltip.addEventListener('mouseenter', () => {
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+  });
+  tooltip.addEventListener('mouseleave', () => {
+    clearHighlight();
+    hideTooltip();
+  });
+
+  // ── Animate polygon on scroll ──
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          dataPolygon.style.transform = 'scale(1)';
+        }, 150);
+        sectionObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '0px 0px -40px 0px' });
+
+  if (designProfileSection) {
+    sectionObserver.observe(designProfileSection);
+  }
+
+  // Fallback if already in view on load
+  setTimeout(() => {
+    const rect = designProfileSection?.getBoundingClientRect();
+    if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+      if (dataPolygon.style.transform === 'scale(0)' || dataPolygon.style.transform === '') {
+        dataPolygon.style.transform = 'scale(1)';
+      }
+    }
+  }, 400);
+
+  // Click outside to dismiss tooltip (mobile)
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      const isChartElement = e.target.closest('.radar-data-dot') ||
+        e.target.closest('.radar-hit-area') ||
+        e.target.closest('.radar-label') ||
+        e.target.closest('.radar-tooltip');
+      if (!isChartElement && activeAxisIndex >= 0) {
+        clearHighlight();
+        hideTooltip();
+      }
+    }
+  });
+}
+
+// Run after DOM is ready
+document.addEventListener('DOMContentLoaded', initRadarChart);</script>
+</body>
+</html>
